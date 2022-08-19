@@ -1,0 +1,7 @@
+sound_manager/SoundManager.json
+*.swp
+*.swi
+*.swo
+.idea/*
+.DS_Store
+
