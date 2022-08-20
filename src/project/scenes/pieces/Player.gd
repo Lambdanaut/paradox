@@ -16,7 +16,7 @@ func move(x_delta: int, y_delta: int, colliding_piece=null) -> bool:
 	
 	var could_move = .move(x_delta, y_delta, colliding_piece)
 	
-	if could_move and Globals.player == self:
+	if Globals.player == self:
 		var trail_tile_instance = preload(
 			"res://scenes/pieces/TrailTile.tscn").instance()
 		trail_tile_instance.set_piece_pos(pos[0] - x_delta, pos[1] - y_delta, false)

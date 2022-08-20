@@ -21,6 +21,7 @@ const _sound_map := {
 
 	# Sound fx
 	"button-pressed": preload("res://data/audio/sfx/button-pressed.wav"),
+	"cant-move": preload("res://data/audio/sfx/cant-move.wav"),
 	"clone": preload("res://data/audio/sfx/clone.wav"),
 	"epoch": preload("res://data/audio/sfx/epoch.wav"),
 }

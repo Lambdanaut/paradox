@@ -1,1 +1,3 @@
-cd compiled/html5; python3 -m http.server & open -a Safari http://localhost:8000/Overworld.html
+cd compiled/html5; 
+echo "Serving game from http://localhost:8000/paradox.html"
+python3 -m http.server;

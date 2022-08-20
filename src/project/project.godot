@@ -33,6 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="paradox"
+run/main_scene="res://scenes/root_scenes/Level0.tscn"
 boot_splash/bg_color=Color( 0.388235, 0.25098, 0.396078, 1 )
 config/icon="res://icon.png"
 

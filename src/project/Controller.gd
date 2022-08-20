@@ -1,6 +1,5 @@
 extends Node
 
-
 var is_active := true
 
 func _ready():

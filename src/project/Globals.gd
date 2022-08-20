@@ -3,6 +3,9 @@ extends Node
 signal time_progressed(new_epoch)
 signal time_direction_changed(new_direction)
 
+const AUTHOR: String = "Lambdanaut"
+const AUTHOR_URL: String = "https://lambdanaut.com"
+
 const INITIAL_TIME: int = 9
 
 const TILE_WIDTH: int = 16
@@ -13,7 +16,6 @@ const COLOR_BLACK = Color("#000000")
 const COLOR_YELLOW = Color("#f8ff00")
 const COLOR_PURP = Color("#634065")
 const COLOR_BLUE = Color("#89aacb")
-
 
 const TILE_PIECE_ID: int = 0
 const WALL_PIECE_ID: int = 1
@@ -28,7 +30,10 @@ const BUTTON_GREEN_PIECE_ID: int = 9
 const HOURGLASS_PIECE_ID: int = 10
 
 var level_index: int = 0
-var levels: Array = []
+var levels: Array = [
+	"res://scenes/root_scenes/Level0.tscn",
+	"res://scenes/root_scenes/Level7.tscn",
+]
 
 var world = null
 var player = null
@@ -40,15 +45,25 @@ var engaged_green_button_count: int = 0
 
 var pieces = []
 
+func clear_registry():
+	world = null
+	player = null
+	epoch = INITIAL_TIME
+	time_progression_active = false
+	forward_increment_time = false
+	engaged_red_button_count = 0
+	engaged_green_button_count = 0
+	pieces.clear()
+
 func progress_time(x_input: int, y_input: int):
 	time_progression_active = true
 	
 	var did_move = Globals.player.move(x_input, y_input)
-	
+
 	if did_move:
 		AudioManager.play("epoch")
 
-		if Globals.player.is_currently_animating:
+		if Globals.player and Globals.player.is_currently_animating:
 			yield(Globals.player, "completed_movement_animation")
 	
 		for piece in pieces:
@@ -56,6 +71,8 @@ func progress_time(x_input: int, y_input: int):
 				piece.progress_time()
 		
 		increment_epoch()
+	else:
+		AudioManager.play("cant-move")
 
 	time_progression_active = false
 
@@ -77,9 +94,10 @@ func reverse_time_direction():
 	forward_increment_time = !forward_increment_time
 	
 	emit_signal("time_direction_changed", forward_increment_time)
-
+	
 func next_level():
 	level_index += 1
+	clear_registry()
 	get_tree().change_scene(levels[level_index])
 
 func add_piece(piece):

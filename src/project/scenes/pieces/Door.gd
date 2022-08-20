@@ -2,7 +2,6 @@ extends "res://scenes/pieces/Piece.gd"
 
 func _init():
 	piece_id = Globals.DOOR_PIECE_ID
-	should_register_piece_on_ready = false
 
 func on_collided_with(other_piece, move_x: int, move_y: int) -> bool:
 	if other_piece.piece_id == Globals.PLAYER_PIECE_ID:
