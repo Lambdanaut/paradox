@@ -9,11 +9,10 @@
 script = ExtResource( 2 )
 
 [node name="EpochLabel" parent="." instance=ExtResource( 1 )]
-margin_left = 282.0
+margin_left = 273.0
 margin_top = 0.0
-margin_right = 330.0
+margin_right = 341.0
 margin_bottom = 49.0
-custom_colors/default_color = Color( 1, 0.968627, 0.968627, 1 )
 bbcode_text = ""
 text = ""
 scroll_active = false

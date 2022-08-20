@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spiral.png-840b8c69274916e402cdfdf7de242fff.stex"
+path="res://.import/door-closed.png-21623e39946468bbca8f8df7f94791d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/sprites/characters/spiral/spiral.png"
-dest_files=[ "res://.import/spiral.png-840b8c69274916e402cdfdf7de242fff.stex" ]
+source_file="res://data/sprites/pieces/door/door-closed.png"
+dest_files=[ "res://.import/door-closed.png-21623e39946468bbca8f8df7f94791d4.stex" ]
 
 [params]
 

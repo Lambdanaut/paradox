@@ -13,7 +13,16 @@ func _ready():
 func move(x_delta: int, y_delta: int, colliding_piece=null) -> bool:
 	if x_delta:
 		set_flip_h(x_delta > 0)
-	return .move(x_delta, y_delta, colliding_piece)
+	
+	var could_move = .move(x_delta, y_delta, colliding_piece)
+	
+	if could_move and Globals.player == self:
+		var trail_tile_instance = preload(
+			"res://scenes/pieces/TrailTile.tscn").instance()
+		trail_tile_instance.set_piece_pos(pos[0] - x_delta, pos[1] - y_delta, false)
+		Globals.world.add_child(trail_tile_instance)
+	
+	return could_move
 
 func set_flip_h(new_flip_h: bool):
 	$Sprite.flip_h = new_flip_h

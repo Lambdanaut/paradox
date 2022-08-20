@@ -10,12 +10,24 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "Gate",
+"language": "GDScript",
+"path": "res://scenes/pieces/Gate.gd"
+}, {
+"base": "Node2D",
 "class": "Piece",
 "language": "GDScript",
 "path": "res://scenes/pieces/Piece.gd"
+}, {
+"base": "Node2D",
+"class": "PressButton",
+"language": "GDScript",
+"path": "res://scenes/pieces/Button.gd"
 } ]
 _global_script_class_icons={
-"Piece": ""
+"Gate": "",
+"Piece": "",
+"PressButton": ""
 }
 
 [application]
@@ -28,6 +40,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://Globals.gd"
+AudioManager="*res://AudioManager.gd"
 Controller="*res://Controller.gd"
 
 [display]

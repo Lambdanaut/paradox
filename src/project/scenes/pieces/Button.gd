@@ -1,0 +1,56 @@
+extends "res://scenes/pieces/Piece.gd"
+
+class_name PressButton
+
+enum ButtonType {RED, GREEN}
+
+const COUNTDOWN_DURATION: int = 1
+
+var button_type = ButtonType.RED
+var engaged := false
+
+func _init():
+	piece_id = Globals.BUTTON_RED_PIECE_ID
+
+func _ready():
+	toggle_engaged(false)
+
+func toggle_engaged(new_engaged: bool):
+	if new_engaged and not engaged:
+		if button_type == ButtonType.RED:
+			Globals.engaged_red_button_count += 1
+		elif button_type == ButtonType.GREEN:
+			Globals.engaged_green_button_count += 1
+		AudioManager.play("button-pressed")
+	elif not new_engaged and engaged:
+		if button_type == ButtonType.RED:
+			Globals.engaged_red_button_count -= 1
+		elif button_type == ButtonType.GREEN:
+			Globals.engaged_green_button_count -= 1
+
+	engaged = new_engaged
+
+	$Sprite.frame = 1 if new_engaged else 0
+
+	for piece in Globals.pieces:
+		if piece.is_gate():
+			piece.toggle_engaged()
+
+func set_button_type(new_button_type):
+	button_type = new_button_type
+
+	if button_type == ButtonType.RED:
+		$Sprite.texture = preload("res://data/sprites/pieces/button/button-red.png")
+	elif button_type == ButtonType.GREEN:
+		$Sprite.texture = preload("res://data/sprites/pieces/button/button-green.png")
+
+func on_collided_with(other_piece, move_x: int, move_y: int) -> bool:
+	toggle_engaged(true)
+	return true
+
+func on_uncollided_with(other_piece, move_x: int, move_y: int) -> bool:
+	toggle_engaged(false)
+	return true
+
+func progress_time():
+	return .progress_time()
