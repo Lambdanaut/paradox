@@ -32,6 +32,7 @@ const HOURGLASS_PIECE_ID: int = 10
 var level_index: int = 0
 var levels: Array = [
 	"res://scenes/root_scenes/Level0.tscn",
+	"res://scenes/root_scenes/Level1.tscn",
 	"res://scenes/root_scenes/Level7.tscn",
 ]
 
@@ -42,6 +43,7 @@ var time_progression_active := false
 var forward_increment_time := false
 var engaged_red_button_count: int = 0
 var engaged_green_button_count: int = 0
+var win_queued := false
 var lose_queued := false
 var lost_last_scene := false
 var pieces := []
@@ -54,6 +56,7 @@ func clear_registry():
 	forward_increment_time = false
 	engaged_red_button_count = 0
 	engaged_green_button_count = 0
+	win_queued = false
 	lose_queued = false
 	lost_last_scene = false
 	pieces.clear()
@@ -68,6 +71,9 @@ func progress_time(x_input: int, y_input: int):
 
 		if Globals.player and Globals.player.is_currently_animating:
 			yield(Globals.player, "completed_movement_animation")
+			
+		if win_queued:
+			_next_level()
 	
 		for piece in pieces:
 			if piece != player:
@@ -103,14 +109,11 @@ func reverse_time_direction():
 	
 	emit_signal("time_direction_changed", forward_increment_time)
 
+func queue_win():
+	win_queued = true
+
 func queue_lose():
 	lose_queued = true
-
-func next_level():
-	level_index += 1
-	yield(get_tree(), "idle_frame")
-	clear_registry()
-	get_tree().change_scene(levels[level_index])
 
 func add_piece(piece):
 	pieces.append(piece)
@@ -133,4 +136,9 @@ func _lose():
 	AudioManager.play("lose")
 	clear_registry()
 	lost_last_scene = true
+	get_tree().change_scene(levels[level_index])
+
+func _next_level():
+	level_index += 1
+	clear_registry()
 	get_tree().change_scene(levels[level_index])
