@@ -8,20 +8,60 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Piece",
+"language": "GDScript",
+"path": "res://scenes/pieces/Piece.gd"
+} ]
+_global_script_class_icons={
+"Piece": ""
+}
+
 [application]
 
 config/name="paradox"
+run/main_scene="res://scenes/root_scenes/World.tscn"
 boot_splash/bg_color=Color( 0.388235, 0.25098, 0.396078, 1 )
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://Globals.gd"
+Controller="*res://Controller.gd"
 
 [display]
 
 window/size/width=320
-window/size/height=180
-window/size/test_width=1920
-window/size/test_height=1080
+window/size/height=176
+window/size/test_width=640
+window/size/test_height=352
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": true,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
 
 [physics]
 
@@ -30,7 +70,9 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+2d/options/ninepatch_mode=0
 environment/default_clear_color=Color( 0.388235, 0.25098, 0.396078, 1 )
 environment/default_environment="res://default_env.tres"

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://data/fonts/MainFont.tres" type="DynamicFont" id=1]
+
+[node name="Epoch" type="RichTextLabel"]
+margin_left = 296.0
+margin_top = -1.0
+margin_right = 351.0
+margin_bottom = 33.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[wave]0:01[/wave]"
+text = "0:01"
