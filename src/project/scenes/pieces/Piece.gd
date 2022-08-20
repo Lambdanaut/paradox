@@ -23,21 +23,24 @@ func _ready():
 	if should_register_piece_on_ready:
 		Globals.add_piece(self)
 
-func progress_time():
+func progress_time() -> bool:
 	if playback_movements:
 		var next_move: Array = playback_movements.pop_front()
-		move(next_move[0], next_move[1])
+		return move(next_move[0], next_move[1])
+	return false
 
 func move(x_delta: int, y_delta: int, colliding_piece=null) -> bool:
-	if not colliding_piece:
-		recorded_movements.append([x_delta, y_delta])
-		
 	last_move = [x_delta, y_delta]
 	
 	var new_x: int = pos[0] + x_delta
 	var new_y: int = pos[1] + y_delta
 	
-	return move_to(new_x, new_y, colliding_piece)
+	var could_move: bool = move_to(new_x, new_y, colliding_piece)
+	
+	if not colliding_piece and could_move:
+		recorded_movements.append([x_delta, y_delta])
+	
+	return could_move
 
 func move_to(_new_x: int, _new_y: int, _colliding_piece=null) -> bool:
 	var new_x: int = clamp(_new_x, 0, Globals.world.bounds[0])

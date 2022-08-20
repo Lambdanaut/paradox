@@ -1,9 +1,33 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://EpochLabel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/root_scenes/WorldTemplate.gd" type="Script" id=2]
 [ext_resource path="res://EpochLabel.gd" type="Script" id=3]
 [ext_resource path="res://data/sprites/tiles/bricks/tileset_bricks.tres" type="TileSet" id=4]
+[ext_resource path="res://data/fonts/MainFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://data/fonts/WorldNameFont.tres" type="DynamicFont" id=6]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends RichTextLabel
+
+func _ready():
+	if not Globals.lost_last_scene and Globals.level_index > 0:
+		visible = true
+		yield(get_tree().create_timer(3.0), \"timeout\")
+		visible = false
+		bbcode_text = \"LEVEL \" + str(Globals.level_index)
+"
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends RichTextLabel
+
+
+func _ready():
+	if Globals.lost_last_scene:
+		visible = true
+		yield(get_tree().create_timer(2.5), \"timeout\")
+		visible = false
+"
 
 [node name="WorldTemplate" type="Node2D"]
 script = ExtResource( 2 )
@@ -23,3 +47,28 @@ z_index = -2
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
 format = 1
+
+[node name="NextLevelText" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 94.0
+margin_top = 76.0
+margin_right = 231.0
+margin_bottom = 100.0
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_text = "level 1"
+text = "level 1"
+script = SubResource( 2 )
+
+[node name="DeathText" type="RichTextLabel" parent="."]
+visible = false
+margin_left = 99.0
+margin_top = 73.0
+margin_right = 247.0
+margin_bottom = 99.0
+custom_colors/default_color = Color( 1, 0.2, 0.2, 1 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "  [wave]DEATH  BY  PARADOX[/wave]"
+text = "  DEATH  BY  PARADOX"
+scroll_active = false
+script = SubResource( 1 )

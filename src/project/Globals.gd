@@ -42,8 +42,9 @@ var time_progression_active := false
 var forward_increment_time := false
 var engaged_red_button_count: int = 0
 var engaged_green_button_count: int = 0
-
-var pieces = []
+var lose_queued := false
+var lost_last_scene := false
+var pieces := []
 
 func clear_registry():
 	world = null
@@ -53,14 +54,16 @@ func clear_registry():
 	forward_increment_time = false
 	engaged_red_button_count = 0
 	engaged_green_button_count = 0
+	lose_queued = false
+	lost_last_scene = false
 	pieces.clear()
 
 func progress_time(x_input: int, y_input: int):
 	time_progression_active = true
 	
-	var did_move = Globals.player.move(x_input, y_input)
+	var player_did_move: bool = Globals.player.move(x_input, y_input)
 
-	if did_move:
+	if player_did_move:
 		AudioManager.play("epoch")
 
 		if Globals.player and Globals.player.is_currently_animating:
@@ -68,11 +71,16 @@ func progress_time(x_input: int, y_input: int):
 	
 		for piece in pieces:
 			if piece != player:
-				piece.progress_time()
+				var piece_did_move: bool = piece.progress_time()
+				if lose_queued and piece_did_move:
+					yield(piece, "completed_movement_animation")
 		
 		increment_epoch()
 	else:
 		AudioManager.play("cant-move")
+	
+	if lose_queued:
+		_lose()
 
 	time_progression_active = false
 
@@ -94,9 +102,13 @@ func reverse_time_direction():
 	forward_increment_time = !forward_increment_time
 	
 	emit_signal("time_direction_changed", forward_increment_time)
-	
+
+func queue_lose():
+	lose_queued = true
+
 func next_level():
 	level_index += 1
+	yield(get_tree(), "idle_frame")
 	clear_registry()
 	get_tree().change_scene(levels[level_index])
 
@@ -116,3 +128,9 @@ func get_pieces_at(piece_x: int, piece_y: int, piece_id: int=-1) -> Array:
 
 func to_global_pos(val: int) -> float:
 	return float(val) * TILE_WIDTH
+
+func _lose():
+	AudioManager.play("lose")
+	clear_registry()
+	lost_last_scene = true
+	get_tree().change_scene(levels[level_index])

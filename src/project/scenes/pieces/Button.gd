@@ -13,7 +13,8 @@ func _init():
 	piece_id = Globals.BUTTON_RED_PIECE_ID
 
 func _ready():
-	toggle_engaged(false)
+	pass
+#	toggle_engaged(false)
 
 func toggle_engaged(new_engaged: bool):
 	if new_engaged and not engaged:

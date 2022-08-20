@@ -22,7 +22,7 @@ func _ready():
 	Globals.set_epoch(INF)
 	Controller.is_active = false
 	
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(1.5), "timeout")
 	
 	Controller.is_active = true
 	
