@@ -3,7 +3,7 @@ extends Node
 signal time_progressed(new_epoch)
 signal time_direction_changed(new_direction)
 
-const INITIAL_TIME: int = 8
+const INITIAL_TIME: int = 9
 
 const TILE_WIDTH: int = 16
 const TILE_HEIGHT: int = 16
@@ -27,8 +27,8 @@ const BUTTON_RED_PIECE_ID: int = 8
 const BUTTON_GREEN_PIECE_ID: int = 9
 const HOURGLASS_PIECE_ID: int = 10
 
-var levels: Array = []
 var level_index: int = 0
+var levels: Array = []
 
 var world = null
 var player = null
@@ -77,6 +77,10 @@ func reverse_time_direction():
 	forward_increment_time = !forward_increment_time
 	
 	emit_signal("time_direction_changed", forward_increment_time)
+
+func next_level():
+	level_index += 1
+	get_tree().change_scene(levels[level_index])
 
 func add_piece(piece):
 	pieces.append(piece)

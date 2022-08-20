@@ -27,15 +27,15 @@ const object_mapping: Dictionary = {
 
 var map: Array = [
 	[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
-	[w,o,o,o,o,o,o,o,o,o,P,w,r,o,w,D,o,o,o,w],
-	[w,o,o,o,o,o,o,o,o,o,r,G,o,o,w,o,o,o,g,w],
-	[w,w,w,w,w,w,w,w,R,w,w,w,o,o,w,w,w,w,G,w],
+	[w,o,o,o,o,o,o,o,o,o,P,w,r,o,w,D,o,o,g,w],
+	[w,o,o,o,o,o,o,o,o,r,o,G,o,o,w,o,o,o,o,w],
+	[w,w,w,w,w,w,w,R,R,w,w,w,o,o,w,w,w,w,G,w],
 	[w,w,w,w,w,w,w,o,o,o,w,w,o,o,w,o,o,o,o,w],
-	[w,o,o,o,o,o,o,o,g,o,w,w,g,o,w,o,o,o,o,w],
-	[w,o,o,o,o,o,o,o,o,o,w,w,o,o,w,o,r,o,o,w],
-	[w,o,o,o,r,o,o,o,o,o,w,w,w,R,w,G,w,w,w,w],
+	[w,o,o,o,o,o,o,o,g,o,w,w,o,o,w,o,o,o,o,w],
+	[w,o,o,o,o,o,o,o,o,o,w,w,g,o,w,o,r,o,o,w],
+	[w,o,o,r,o,o,o,o,o,o,w,w,R,w,w,G,w,w,w,w],
 	[w,o,o,o,o,o,o,o,o,o,w,w,o,o,o,o,o,o,o,w],
-	[w,o,o,o,o,o,o,o,o,o,w,w,r,o,o,g,o,o,o,w],
+	[w,o,o,o,o,o,o,o,o,o,w,w,r,w,g,w,o,o,o,w],
 	[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 ]
 
@@ -61,7 +61,7 @@ func _load_map(_map: Array):
 			if resource:
 				var instance = _instantiate_obj_at(resource, x, y)
 				
-				if piece_id == Globals.PLAYER_PIECE_ID:
+				if piece_id == Globals.PLAYER_PIECE_ID and map[y-1][x] == Globals.WALL_PIECE_ID:
 					_instantiate_obj_at(preload("res://scenes/pieces/Door-Closed.tscn"), x, y)
 
 				if piece_id == Globals.GATE_RED_PIECE_ID:

@@ -1,4 +1,5 @@
 sound_manager/SoundManager.json
+compiled/
 *.swp
 *.swi
 *.swo

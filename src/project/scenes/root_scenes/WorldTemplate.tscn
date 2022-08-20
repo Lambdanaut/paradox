@@ -5,7 +5,7 @@
 [ext_resource path="res://EpochLabel.gd" type="Script" id=3]
 [ext_resource path="res://data/sprites/tiles/bricks/tileset_bricks.tres" type="TileSet" id=4]
 
-[node name="World" type="Node2D"]
+[node name="WorldTemplate" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="EpochLabel" parent="." instance=ExtResource( 1 )]

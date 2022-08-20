@@ -18,7 +18,7 @@ func _physics_process(delta):
 
 	var select_input: bool = Input.is_action_just_pressed("ui_select")
 	if select_input:
-		Globals.progress_time(0, 0)
+		pass
 	else:
 		var x_input: int = 0
 		var y_input: int = 0

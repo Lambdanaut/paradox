@@ -13,6 +13,8 @@ func _ready():
 	_on_time_direction_changed(false)
 
 func _epoch_to_label(epoch: int):
+	if epoch > 10000:
+		return ""
 	var seconds = epoch % 60
 	var minutes = epoch / 60
 	var seconds_str = str(int(seconds))
