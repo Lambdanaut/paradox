@@ -35,6 +35,9 @@ var levels: Array = [
 	"res://scenes/root_scenes/Level1.tscn",
 	"res://scenes/root_scenes/Level2.tscn",
 	"res://scenes/root_scenes/Level3.tscn",
+	"res://scenes/root_scenes/Level4.tscn",
+	"res://scenes/root_scenes/Level5.tscn",
+	"res://scenes/root_scenes/Level6.tscn",
 	"res://scenes/root_scenes/Level7.tscn",
 ]
 
