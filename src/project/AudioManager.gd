@@ -20,6 +20,7 @@ const _sound_map := {
 #	"kickboxing-1" : "res://data/audio/music/Kickboxing 1.ogg",
 
 	# Sound fx
+	"terminal": preload("res://data/audio/sfx/terminal.wav"),
 	"button-pressed": preload("res://data/audio/sfx/button-pressed.wav"),
 	"cant-move": preload("res://data/audio/sfx/cant-move.wav"),
 	"clone": preload("res://data/audio/sfx/clone.wav"),

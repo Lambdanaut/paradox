@@ -7,7 +7,7 @@ func _init():
 	restart_enabled = false
 	map = [
 		[w,w,w,w,w,w,w,w,w,D,w,w,w,w,w,w,w,w,w,w],
-		[w,w,w,w,w,w,w,w,o,o,o,o,w,w,w,w,w,w,w,w],
+		[w,w,w,w,w,w,w,w,o,o,o,C,w,w,w,w,w,w,w,w],
 		[w,w,w,w,w,w,w,w,o,o,o,o,w,w,w,w,w,w,w,w],
 		[w,w,w,w,w,w,w,w,R,R,R,R,w,w,w,w,w,w,w,w],
 		[w,w,w,w,w,w,w,w,r,o,o,o,w,w,w,w,w,w,w,w],
@@ -22,6 +22,8 @@ func _init():
 func _ready():
 	Globals.set_epoch(INF)
 	Controller.is_active = false
+	
+	$SplashScreen.visible=true
 	
 	yield(get_tree().create_timer(1.5), "timeout")
 	

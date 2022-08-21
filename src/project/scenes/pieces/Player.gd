@@ -10,11 +10,11 @@ func _ready():
 	if not Globals.player:
 		Globals.player = self
 
-func move(x_delta: int, y_delta: int, colliding_piece=null) -> bool:
+func move(x_delta: int, y_delta: int, colliding_piece=null, force: bool=false) -> bool:
 	if x_delta:
 		set_flip_h(x_delta > 0)
 	
-	var could_move = .move(x_delta, y_delta, colliding_piece)
+	var could_move = .move(x_delta, y_delta, colliding_piece, force)
 
 	if Globals.player == self:
 		var trail_tile_instance = preload(

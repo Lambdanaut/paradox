@@ -28,7 +28,8 @@ const GATE_GREEN_PIECE_ID: int = 7
 const BUTTON_RED_PIECE_ID: int = 8
 const BUTTON_GREEN_PIECE_ID: int = 9
 const BOX_PIECE_ID: int = 10
-const HOURGLASS_PIECE_ID: int = 11
+const TERMINAL_PIECE_ID: int = 11
+const HOURGLASS_PIECE_ID: int = 12
 
 
 var level_index: int = 0
@@ -71,28 +72,41 @@ func clear_registry():
 func progress_time(x_input: int, y_input: int):
 	time_progression_active = true
 	
-	var player_did_move: bool = Globals.player.move(x_input, y_input)
+	var player_did_move: bool = player.move(x_input, y_input)
 
 	if player_did_move:
 		AudioManager.play("epoch")
 
-		if Globals.player and Globals.player.is_currently_animating:
-			yield(Globals.player, "completed_movement_animation")
-			
+		if player.is_currently_animating:
+			yield(player, "completed_movement_animation")
+
 		if win_queued:
 			return _next_level()
-	
+
+		# Move all pieces
 		for piece in pieces:
 			if piece != player:
+				var lose_was_queued: bool = false
 				var piece_did_move: bool = piece.progress_time()
-				if lose_queued and piece_did_move:
+
+				if lose_queued and not lose_was_queued:
+					# Force the piece to animate if it caused a loss.
+					if not piece.is_currently_animating:
+						piece.move(piece.last_move[0], piece.last_move[1], null, true)
 					yield(piece, "completed_movement_animation")
+
 	else:
 		AudioManager.play("cant-move")
-	
+
+		if lose_queued:
+			# Force the player animation if we're going to die there
+			player.move(x_input, y_input, null, true)
+			if player.is_currently_animating:
+				yield(player, "completed_movement_animation")
+
 	if lose_queued:
 		return _lose()
-	
+
 	if player_did_move:
 		increment_epoch()
 

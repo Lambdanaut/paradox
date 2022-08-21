@@ -11,6 +11,7 @@ const G: int = Globals.GATE_GREEN_PIECE_ID
 const r: int = Globals.BUTTON_RED_PIECE_ID
 const g: int = Globals.BUTTON_GREEN_PIECE_ID
 const B: int = Globals.BOX_PIECE_ID
+const C: int = Globals.TERMINAL_PIECE_ID
 const H: int = Globals.HOURGLASS_PIECE_ID
 
 const object_mapping: Dictionary = {
@@ -24,6 +25,7 @@ const object_mapping: Dictionary = {
 	r: preload("res://scenes/pieces/Button.tscn"),
 	g: preload("res://scenes/pieces/Button.tscn"),
 	B: preload("res://scenes/pieces/Box.tscn"),
+	C: preload("res://scenes/pieces/Terminal.tscn"),
 	H: null,
 }
 
@@ -115,5 +117,5 @@ func _on_time_direction_changed(new_direction: bool):
 			Globals.player.start_pos[1])
 		AudioManager.play("clone")
 
-func has_tile_at(x: int, y: int):
+func has_wall_at(x: int, y: int):
 	return $TileMap.get_cell(x, y) != TileMap.INVALID_CELL

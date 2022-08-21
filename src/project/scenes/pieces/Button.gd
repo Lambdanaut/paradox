@@ -12,10 +12,6 @@ var engaged := false
 func _init():
 	piece_id = Globals.BUTTON_RED_PIECE_ID
 
-func _ready():
-	pass
-#	toggle_engaged(false)
-
 func toggle_engaged(new_engaged: bool):
 	if new_engaged and not engaged:
 		if button_type == ButtonType.RED:
@@ -46,13 +42,9 @@ func set_button_type(new_button_type):
 		$Sprite.texture = preload("res://data/sprites/pieces/button/button-green.png")
 
 func on_collided_with(other_piece, move_x: int, move_y: int) -> bool:
-	print(piece_id)
 	toggle_engaged(true)
 	return true
 
 func on_uncollided_with(other_piece, move_x: int, move_y: int) -> bool:
 	toggle_engaged(false)
 	return true
-
-func progress_time():
-	return .progress_time()

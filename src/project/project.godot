@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "PressButton",
 "language": "GDScript",
 "path": "res://scenes/pieces/Button.gd"
+}, {
+"base": "Node2D",
+"class": "Terminal",
+"language": "GDScript",
+"path": "res://scenes/pieces/Terminal.gd"
 } ]
 _global_script_class_icons={
 "Gate": "",
 "Piece": "",
-"PressButton": ""
+"PressButton": "",
+"Terminal": ""
 }
 
 [application]

@@ -29,25 +29,26 @@ func progress_time() -> bool:
 		return move(next_move[0], next_move[1])
 	return false
 
-func move(x_delta: int, y_delta: int, colliding_piece=null) -> bool:
+func move(x_delta: int, y_delta: int, colliding_piece=null, force: bool=false) -> bool:
 	last_move = [x_delta, y_delta]
 	
 	var new_x: int = pos[0] + x_delta
 	var new_y: int = pos[1] + y_delta
 	
-	var could_move: bool = move_to(new_x, new_y, colliding_piece)
+	var could_move: bool = move_to(new_x, new_y, colliding_piece, force)
 	
 	if not colliding_piece and could_move:
 		recorded_movements.append([x_delta, y_delta])
 	
 	return could_move
 
-func move_to(_new_x: int, _new_y: int, _colliding_piece=null) -> bool:
-	var new_x: int = clamp(_new_x, 0, Globals.world.bounds[0])
-	var new_y: int = clamp(_new_y, 0, Globals.world.bounds[1])
+func move_to(new_x: int, new_y: int, _colliding_piece=null, force: bool=false) -> bool:
+	if new_x < 0 or new_x > Globals.world.bounds[0] or new_y < 0 or new_y > Globals.world.bounds[1]:
+		return false
 
-	var pieces_at_new_pos = Globals.get_pieces_at(_new_x, _new_y)
+	var pieces_at_new_pos: Array = Globals.get_pieces_at(new_x, new_y)
 	
+	# Call on_collided_with() for every piece we'll be colliding with
 	var can_move_piece: bool = true
 	if not self in pieces_at_new_pos:
 		for piece_at_pos in pieces_at_new_pos:
@@ -57,10 +58,11 @@ func move_to(_new_x: int, _new_y: int, _colliding_piece=null) -> bool:
 				last_move[0], 
 				last_move[1])
 
-	if Globals.world.has_tile_at(new_x, new_y):
+	# Can't move through walls
+	if Globals.world.has_wall_at(new_x, new_y):
 		can_move_piece = false
 
-	if can_move_piece:
+	if can_move_piece or force:
 		var pieces_at_old_pos = Globals.get_pieces_at(pos[0], pos[1])
 		for piece_at_pos in pieces_at_old_pos:
 			if piece_at_pos != self:
