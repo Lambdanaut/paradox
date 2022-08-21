@@ -33,6 +33,8 @@ var level_index: int = 0
 var levels: Array = [
 	"res://scenes/root_scenes/Level0.tscn",
 	"res://scenes/root_scenes/Level1.tscn",
+	"res://scenes/root_scenes/Level2.tscn",
+	"res://scenes/root_scenes/Level3.tscn",
 	"res://scenes/root_scenes/Level7.tscn",
 ]
 
@@ -73,20 +75,21 @@ func progress_time(x_input: int, y_input: int):
 			yield(Globals.player, "completed_movement_animation")
 			
 		if win_queued:
-			_next_level()
+			return _next_level()
 	
 		for piece in pieces:
 			if piece != player:
 				var piece_did_move: bool = piece.progress_time()
 				if lose_queued and piece_did_move:
 					yield(piece, "completed_movement_animation")
-		
-		increment_epoch()
 	else:
 		AudioManager.play("cant-move")
 	
 	if lose_queued:
-		_lose()
+		return _lose()
+	
+	if player_did_move:
+		increment_epoch()
 
 	time_progression_active = false
 
@@ -132,13 +135,14 @@ func get_pieces_at(piece_x: int, piece_y: int, piece_id: int=-1) -> Array:
 func to_global_pos(val: int) -> float:
 	return float(val) * TILE_WIDTH
 
-func _lose():
+func _lose():  # Call queue_lose() unless you know what you're doing
 	AudioManager.play("lose")
 	clear_registry()
 	lost_last_scene = true
 	get_tree().change_scene(levels[level_index])
 
-func _next_level():
+func _next_level():  # Call queue_next_level() unless you know what you're doing
+	AudioManager.play("win")
 	level_index += 1
 	clear_registry()
 	get_tree().change_scene(levels[level_index])

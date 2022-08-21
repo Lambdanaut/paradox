@@ -15,9 +15,9 @@ func _physics_process(delta):
 	if Globals.time_progression_active:
 		return
 
-	var select_input: bool = Input.is_action_just_pressed("ui_select")
-	if select_input:
-		pass
+	var cancel_input: bool = Input.is_action_just_pressed("ui_cancel")
+	if cancel_input and Globals.world.restart_enabled:
+		Globals._lose()
 	else:
 		var x_input: int = 0
 		var y_input: int = 0

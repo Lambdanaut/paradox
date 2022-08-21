@@ -25,6 +25,7 @@ const _sound_map := {
 	"clone": preload("res://data/audio/sfx/clone.wav"),
 	"epoch": preload("res://data/audio/sfx/epoch.wav"),
 	"lose": preload("res://data/audio/sfx/lose.wav"),
+	"win": preload("res://data/audio/sfx/win.wav"),
 }
 
 var is_bgm_enabled := true

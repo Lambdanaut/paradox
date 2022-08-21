@@ -38,6 +38,7 @@ var map: Array = [
 	[w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w],
 	[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 ]
+var restart_enabled: bool = true
 
 var bounds: Array = [0, 0]
 

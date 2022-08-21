@@ -4,6 +4,7 @@ const URL := "https://lambdanaut.com"
 
 
 func _init():
+	restart_enabled = false
 	map = [
 		[w,w,w,w,w,w,w,w,w,D,w,w,w,w,w,w,w,w,w,w],
 		[w,w,w,w,w,w,w,w,o,o,o,o,w,w,w,w,w,w,w,w],
