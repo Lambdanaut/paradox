@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Dialogue",
+"language": "GDScript",
+"path": "res://scenes/misc/Dialogue.gd"
+}, {
 "base": "Node2D",
 "class": "Gate",
 "language": "GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://scenes/pieces/Terminal.gd"
 } ]
 _global_script_class_icons={
+"Dialogue": "",
 "Gate": "",
 "Piece": "",
 "PressButton": "",
@@ -45,9 +51,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Globals="*res://Globals.gd"
-AudioManager="*res://AudioManager.gd"
-Controller="*res://Controller.gd"
+Globals="*res://scenes/Globals.gd"
+AudioManager="*res://scenes/AudioManager.gd"
+Controller="*res://scenes/Controller.gd"
 
 [display]
 
