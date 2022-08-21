@@ -61,7 +61,6 @@ func move_to(_new_x: int, _new_y: int, _colliding_piece=null) -> bool:
 		can_move_piece = false
 
 	if can_move_piece:
-		
 		var pieces_at_old_pos = Globals.get_pieces_at(pos[0], pos[1])
 		for piece_at_pos in pieces_at_old_pos:
 			if piece_at_pos != self:
@@ -103,6 +102,25 @@ func is_gate() -> bool:
 		Globals.GATE_GREEN_PIECE_ID,
 		Globals.GATE_RED_PIECE_ID,
 	]
+
+func bounce_to_position_animation(new_global_x: float, new_global_y: float, duration: float):
+	# Animates bouncing to a global position
+	# Requires a child tween node named "Tween" to function
+
+	is_currently_animating = true
+	
+	var tween = get_node("Tween")
+
+	tween.interpolate_property(self, "global_position",
+		global_position, Vector2(new_global_x, new_global_y), duration,
+		Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+	tween.start()
+
+	yield(tween, "tween_completed")
+
+	is_currently_animating = false
+
+	emit_signal("completed_movement_animation")
 
 ### Abstract function to be called when we clone this piece
 func clone(x: int, y: int):

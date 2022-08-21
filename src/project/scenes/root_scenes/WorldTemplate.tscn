@@ -65,14 +65,16 @@ script = SubResource( 2 )
 
 [node name="DeathText" type="RichTextLabel" parent="Node2D"]
 visible = false
-margin_left = 99.0
-margin_top = 73.0
-margin_right = 247.0
-margin_bottom = 99.0
+margin_left = 74.0
+margin_top = 49.0
+margin_right = 273.0
+margin_bottom = 107.0
 custom_colors/default_color = Color( 1, 0.2, 0.2, 1 )
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
-bbcode_text = "  [wave]DEATH  BY  PARADOX[/wave]"
-text = "  DEATH  BY  PARADOX"
+bbcode_text = "  
+  [wave] TIME REVERTED  BY  PARADOX[/wave]"
+text = "  
+   TIME REVERTED  BY  PARADOX"
 scroll_active = false
 script = SubResource( 1 )

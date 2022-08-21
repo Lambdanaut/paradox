@@ -10,6 +10,7 @@ const R: int = Globals.GATE_RED_PIECE_ID
 const G: int = Globals.GATE_GREEN_PIECE_ID
 const r: int = Globals.BUTTON_RED_PIECE_ID
 const g: int = Globals.BUTTON_GREEN_PIECE_ID
+const B: int = Globals.BOX_PIECE_ID
 const H: int = Globals.HOURGLASS_PIECE_ID
 
 const object_mapping: Dictionary = {
@@ -22,6 +23,7 @@ const object_mapping: Dictionary = {
 	G: preload("res://scenes/pieces/Gate.tscn"),
 	r: preload("res://scenes/pieces/Button.tscn"),
 	g: preload("res://scenes/pieces/Button.tscn"),
+	B: preload("res://scenes/pieces/Box.tscn"),
 	H: null,
 }
 

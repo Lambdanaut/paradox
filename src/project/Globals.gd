@@ -27,7 +27,9 @@ const GATE_RED_PIECE_ID: int = 6
 const GATE_GREEN_PIECE_ID: int = 7
 const BUTTON_RED_PIECE_ID: int = 8
 const BUTTON_GREEN_PIECE_ID: int = 9
-const HOURGLASS_PIECE_ID: int = 10
+const BOX_PIECE_ID: int = 10
+const HOURGLASS_PIECE_ID: int = 11
+
 
 var level_index: int = 0
 var levels: Array = [

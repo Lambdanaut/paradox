@@ -45,15 +45,4 @@ func clone(x: int, y: int):
 	instance.get_node("Sprite").frame = 1
 
 func animate_movement(new_global_x: float, new_global_y: float):
-	is_currently_animating = true
-
-	$Tween.interpolate_property(self, "global_position",
-		global_position, Vector2(new_global_x, new_global_y), ANIMATION_DURATION,
-		Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
-	$Tween.start()
-
-	yield($Tween, "tween_completed")
-
-	is_currently_animating = false
-
-	emit_signal("completed_movement_animation")
+	return bounce_to_position_animation(new_global_x, new_global_y, ANIMATION_DURATION)
