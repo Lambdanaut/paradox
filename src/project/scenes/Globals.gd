@@ -43,7 +43,8 @@ const levels: Array = [
 	preload("res://scenes/root_scenes/Level5.tscn"),
 	preload("res://scenes/root_scenes/Level6.tscn"),
 	preload("res://scenes/root_scenes/Level7.tscn"),
-	preload("res://scenes/root_scenes/Level8.tscn")
+	preload("res://scenes/root_scenes/Level8.tscn"),
+	preload("res://scenes/root_scenes/Level9.tscn"),
 ]
 
 var world = null
