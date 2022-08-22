@@ -6,7 +6,7 @@ signal dialogue_complete
 signal response_given
 
 const DIALOGUE_PROMPT = "> "
-const DIALOGUE_CURSOR = "#"
+const DIALOGUE_CURSOR = " #"
 
 var ongoing_dialogue: GDScriptFunctionState
 var next_dialogue_input_received := false
@@ -34,11 +34,11 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 		var current_dialogue = dialogue[current_dialogue_index]
 		
 		var dialogue_str_i := 0
-		var current_dialogue_str = current_dialogue.trim_suffix(" ") + ""
+		var current_dialogue_str = current_dialogue.trim_suffix(" ")
 		var in_bbcode_tag := false
 		
 		text_label.bbcode_text = _decorate_dialogue_string(current_dialogue_str)
-		text_label.visible_characters = len(DIALOGUE_PROMPT) + 1
+		text_label.visible_characters = len(DIALOGUE_PROMPT) - 1
 		
 		while dialogue_str_i < len(current_dialogue_str):
 			next_dialogue_input_received = false
@@ -95,7 +95,7 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 	queue_free()
 
 func _decorate_dialogue_string(dialogue_string):
-	return DIALOGUE_PROMPT + dialogue_string + " [blink]" + DIALOGUE_CURSOR + "[/blink]"
+	return DIALOGUE_PROMPT + dialogue_string + "[blink]" + DIALOGUE_CURSOR + "[/blink]"
 
 func toggle_dialogue_visible(new_visible: bool):
 	$SpeechBackgroundRect.visible = new_visible

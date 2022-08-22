@@ -5,6 +5,7 @@ signal time_direction_changed(new_direction)
 
 const AUTHOR: String = "Lambdanaut"
 const AUTHOR_URL: String = "https://lambdanaut.com"
+const NOTES: String = "Starring Charnel Fontaine and Sarah Greene"
 
 const INITIAL_TIME: int = 9
 

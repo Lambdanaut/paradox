@@ -14,7 +14,7 @@ script/source = "extends RichTextLabel
 func _ready():
 	if not Globals.lost_last_scene and Globals.level_index > 0:
 		visible = true
-		bbcode_text = \"LEVEL -\" + str(Globals.level_index)
+		bbcode_text = \"LEVEL \" + str(Globals.level_index)
 		yield(get_tree().create_timer(4.0), \"timeout\")
 		visible = false
 "
