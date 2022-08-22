@@ -18,19 +18,18 @@ func _on_input_event( viewport, event, shape_idx ):
 "
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 160, 88 )
+extents = Vector2( 55, 8 )
 
 [node name="Level0" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 
 [node name="SplashScreen" type="Node2D" parent="." index="0"]
-visible = false
 
 [node name="URLClick" type="Area2D" parent="SplashScreen" index="0"]
 script = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SplashScreen/URLClick" index="0"]
-position = Vector2( 160.25, 88.25 )
+position = Vector2( 155.5, 96 )
 shape = SubResource( 1 )
 
 [node name="BlackoutScreen" type="Polygon2D" parent="SplashScreen" index="1"]

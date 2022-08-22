@@ -86,7 +86,7 @@ func set_piece_pos(new_x: int, new_y: int, animate_piece: bool=true):
 	var new_global_x: float = Globals.to_global_pos(new_x)
 	var new_global_y: float = Globals.to_global_pos(new_y)
 
-	var does_animate = animate_movement(new_global_x, new_global_y)
+	var does_animate = animate_movement(new_global_x, new_global_y) if animate_piece else false
 
 	if not animate_piece or not does_animate:
 		global_position = Vector2(
