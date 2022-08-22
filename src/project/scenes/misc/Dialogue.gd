@@ -34,7 +34,7 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 		var current_dialogue = dialogue[current_dialogue_index]
 		
 		var dialogue_str_i := 0
-		var current_dialogue_str = current_dialogue[1].trim_suffix(" ") + ""
+		var current_dialogue_str = current_dialogue.trim_suffix(" ") + ""
 		var in_bbcode_tag := false
 		
 		text_label.bbcode_text = _decorate_dialogue_string(current_dialogue_str)
@@ -53,7 +53,7 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 			if not in_bbcode_tag:
 				# Longer wait times for punctuation 
 				var dialogue_timer := 0.02
-				if next_char == "." or next_char == "!" or next_char == "?":
+				if next_char == "." or next_char == "!" or next_char == "?" or next_char == "\n":
 					dialogue_timer = 0.2
 				elif next_char == ",":
 					dialogue_timer = 0.1
@@ -83,9 +83,9 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 			yield(get_tree(), "idle_frame")
 		
 		current_dialogue_index += 1
-		
+
 	# Reactivate player to allow movement
-	Controller.is_active = false
+	Controller.is_active = true
 	
 	# Emit a signal to let the owner know that we're complete
 	# Pass along a list of responses given
@@ -95,7 +95,7 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 	queue_free()
 
 func _decorate_dialogue_string(dialogue_string):
-	return DIALOGUE_PROMPT + dialogue_string + "[blink]" + DIALOGUE_CURSOR + "[/blink]"
+	return DIALOGUE_PROMPT + dialogue_string + " [blink]" + DIALOGUE_CURSOR + "[/blink]"
 
 func toggle_dialogue_visible(new_visible: bool):
 	$SpeechBackgroundRect.visible = new_visible

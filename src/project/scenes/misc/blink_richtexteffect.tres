@@ -1,0 +1,25 @@
+[gd_resource type="RichTextEffect" load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "tool
+extends RichTextEffect
+
+# Syntax: [blink freq=0.5][/blink]
+
+# Define the tag name.
+var bbcode = \"blink\"
+
+func _process_custom_fx(char_fx):
+    # Get parameters, or use the provided default value if missing.
+    var frequency = char_fx.env.get(\"freq\", 1.0)
+
+    if fmod(char_fx.elapsed_time, frequency) > frequency/2:
+        char_fx.visible = false
+    else:
+        char_fx.visible = true
+
+    return true
+"
+
+[resource]
+script = SubResource( 1 )

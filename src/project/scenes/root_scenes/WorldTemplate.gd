@@ -43,8 +43,10 @@ var map: Array = [
 	[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 ]
 var restart_enabled: bool = true
+var terminal_dialogue: Array = []
 
 var bounds: Array = [0, 0]
+
 
 func _init():
 	Globals.world = self

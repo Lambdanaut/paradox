@@ -16,12 +16,13 @@ func move(x_delta: int, y_delta: int, colliding_piece=null, force: bool=false) -
 	
 	var could_move = .move(x_delta, y_delta, colliding_piece, force)
 
-	if Globals.player == self:
+	if Globals.player == self and could_move:
 		var trail_tile_instance = preload(
 			"res://scenes/pieces/TrailTile.tscn").instance()
 		trail_tile_instance.set_piece_pos(pos[0] - x_delta, pos[1] - y_delta, false)
 		Globals.world.add_child(trail_tile_instance)
-	elif not could_move:
+
+	if Globals.player != self and not could_move:
 		Globals.queue_lose()
 	
 	return could_move

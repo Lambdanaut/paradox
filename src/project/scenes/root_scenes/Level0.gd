@@ -18,6 +18,13 @@ func _init():
 		[w,w,w,w,w,w,w,w,o,o,P,o,w,w,w,w,w,w,w,w],
 		[w,w,w,w,w,w,w,w,o,o,o,o,w,w,w,w,w,w,w,w],
 	]
+	terminal_dialogue = [
+		"Welcome to the Gerlache primary help system! ",
+		"Current status of facility: [color=#ff3333]Terminal[/color]",
+		"Temporal anomalies detected in and around site. ",
+		"Please alert M5R1 technicians in the event of any anomalies to prevent system outbreak.",
+		"Thank you, and have a wonderful day!"
+	]
 
 func _ready():
 	Globals.set_epoch(INF)
