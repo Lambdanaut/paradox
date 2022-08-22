@@ -34,15 +34,16 @@ const HOURGLASS_PIECE_ID: int = 12
 
 
 var level_index: int = 0
-var levels: Array = [
-	"res://scenes/root_scenes/Level0.tscn",
-	"res://scenes/root_scenes/Level1.tscn",
-	"res://scenes/root_scenes/Level2.tscn",
-	"res://scenes/root_scenes/Level3.tscn",
-	"res://scenes/root_scenes/Level4.tscn",
-	"res://scenes/root_scenes/Level5.tscn",
-	"res://scenes/root_scenes/Level6.tscn",
-	"res://scenes/root_scenes/Level7.tscn",
+const levels: Array = [
+	preload("res://scenes/root_scenes/Level0.tscn"),
+	preload("res://scenes/root_scenes/Level1.tscn"),
+	preload("res://scenes/root_scenes/Level2.tscn"),
+	preload("res://scenes/root_scenes/Level3.tscn"),
+	preload("res://scenes/root_scenes/Level4.tscn"),
+	preload("res://scenes/root_scenes/Level5.tscn"),
+	preload("res://scenes/root_scenes/Level6.tscn"),
+	preload("res://scenes/root_scenes/Level7.tscn"),
+	preload("res://scenes/root_scenes/Level8.tscn")
 ]
 
 var world = null
@@ -159,10 +160,10 @@ func _lose():  # Call queue_lose() unless you know what you're doing
 	AudioManager.play("lose")
 	clear_registry()
 	lost_last_scene = true
-	get_tree().change_scene(levels[level_index])
+	get_tree().change_scene_to(levels[level_index])
 
 func _next_level():  # Call queue_next_level() unless you know what you're doing
 	AudioManager.play("win")
 	level_index += 1
 	clear_registry()
-	get_tree().change_scene(levels[level_index])
+	get_tree().change_scene_to(levels[level_index])

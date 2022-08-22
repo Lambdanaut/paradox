@@ -108,10 +108,14 @@ func is_gate() -> bool:
 func bounce_to_position_animation(new_global_x: float, new_global_y: float, duration: float):
 	# Animates bouncing to a global position
 	# Requires a child tween node named "Tween" to function
+	
+#	if not Globals.player:
+#		return
 
 	is_currently_animating = true
 	
-	var tween = get_node("Tween")
+	var tween: Tween = Tween.new()
+	Globals.world.add_child(tween)
 
 	tween.interpolate_property(self, "global_position",
 		global_position, Vector2(new_global_x, new_global_y), duration,
@@ -121,6 +125,8 @@ func bounce_to_position_animation(new_global_x: float, new_global_y: float, dura
 	yield(tween, "tween_completed")
 
 	is_currently_animating = false
+	
+	tween.queue_free()
 
 	emit_signal("completed_movement_animation")
 

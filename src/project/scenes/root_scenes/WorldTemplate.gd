@@ -1,20 +1,20 @@
 extends Node2D
 
 # Object Ids (for convenience when map-making)
-const o: int = Globals.TILE_PIECE_ID
-const D: int = Globals.DOOR_PIECE_ID
-const w: int = Globals.WALL_PIECE_ID
-const P: int = Globals.PLAYER_PIECE_ID
-const T: int = Globals.TIME_PORTAL_PIECE_ID
-const R: int = Globals.GATE_RED_PIECE_ID
-const G: int = Globals.GATE_GREEN_PIECE_ID
-const r: int = Globals.BUTTON_RED_PIECE_ID
-const g: int = Globals.BUTTON_GREEN_PIECE_ID
-const B: int = Globals.BOX_PIECE_ID
-const C: int = Globals.TERMINAL_PIECE_ID
-const H: int = Globals.HOURGLASS_PIECE_ID
+var o: int = Globals.TILE_PIECE_ID
+var D: int = Globals.DOOR_PIECE_ID
+var w: int = Globals.WALL_PIECE_ID
+var P: int = Globals.PLAYER_PIECE_ID
+var T: int = Globals.TIME_PORTAL_PIECE_ID
+var R: int = Globals.GATE_RED_PIECE_ID
+var G: int = Globals.GATE_GREEN_PIECE_ID
+var r: int = Globals.BUTTON_RED_PIECE_ID
+var g: int = Globals.BUTTON_GREEN_PIECE_ID
+var B: int = Globals.BOX_PIECE_ID
+var C: int = Globals.TERMINAL_PIECE_ID
+var H: int = Globals.HOURGLASS_PIECE_ID
 
-const object_mapping: Dictionary = {
+var object_mapping: Dictionary = {
 	o: null,
 	w: null,
 	D: preload("res://scenes/pieces/Door.tscn"),
