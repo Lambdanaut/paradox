@@ -34,7 +34,7 @@ func move(x_delta: int, y_delta: int, colliding_piece=null, force: bool=false) -
 	
 	var new_x: int = pos[0] + x_delta
 	var new_y: int = pos[1] + y_delta
-	
+
 	var could_move: bool = move_to(new_x, new_y, colliding_piece, force)
 	
 	if not colliding_piece and could_move:
@@ -55,7 +55,7 @@ func move_to(new_x: int, new_y: int, _colliding_piece=null, force: bool=false) -
 			var colliding_piece = _colliding_piece if _colliding_piece else self
 			can_move_piece = can_move_piece and piece_at_pos.on_collided_with(
 				colliding_piece, 
-				last_move[0], 
+				last_move[0],
 				last_move[1])
 
 	# Can't move through walls

@@ -8,9 +8,15 @@ const COUNTDOWN_DURATION: int = 1
 
 var button_type = ButtonType.RED
 var engaged := false
+var was_collided_with_this_turn := false
+
 
 func _init():
 	piece_id = Globals.BUTTON_RED_PIECE_ID
+
+func progress_time() -> bool:
+	was_collided_with_this_turn = false
+	return .progress_time()
 
 func toggle_engaged(new_engaged: bool):
 	if new_engaged and not engaged:
@@ -43,8 +49,10 @@ func set_button_type(new_button_type):
 
 func on_collided_with(other_piece, move_x: int, move_y: int) -> bool:
 	toggle_engaged(true)
+	was_collided_with_this_turn = true
 	return true
 
 func on_uncollided_with(other_piece, move_x: int, move_y: int) -> bool:
-	toggle_engaged(false)
+	if not was_collided_with_this_turn:
+		toggle_engaged(false)
 	return true

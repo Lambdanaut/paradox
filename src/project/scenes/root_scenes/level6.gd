@@ -3,15 +3,17 @@ extends "res://scenes/root_scenes/WorldTemplate.gd"
 
 func _init():
 	map = [
-		[w,w,D,w,w,w,w,w,w,P,w,w,w,w,w,w,w,w,w,w],
-		[w,w,o,w,w,w,w,w,o,o,o,w,w,w,w,w,w,w,w,w],
-		[w,w,R,w,R,G,R,G,o,o,o,G,G,R,R,G,G,o,o,w],
-		[w,w,G,w,G,w,w,w,o,o,r,w,w,w,w,w,o,B,o,w],
-		[w,w,R,w,R,w,w,w,o,B,g,r,w,w,w,w,o,r,o,w],
-		[w,w,G,w,G,w,w,w,o,o,o,o,w,w,w,w,o,o,r,w],
-		[w,w,R,w,R,w,w,w,w,w,w,w,w,w,C,w,w,w,g,w],
-		[w,w,G,R,G,w,w,w,w,w,w,w,w,w,o,w,w,w,w,w],
-		[w,w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w],
-		[w,w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w],
+		[w,w,D,w,w,w,w,w,w,w,w,w,w,w,w,P,w,w,w,w],
+		[w,o,o,o,o,o,R,G,o,o,o,o,w,o,o,o,o,w,w,w],
+		[w,o,o,o,o,o,R,G,o,o,B,o,w,o,o,o,o,w,w,w],
+		[w,o,o,o,o,o,R,G,o,o,o,o,w,o,o,o,o,w,w,w],
+		[w,R,R,R,R,R,w,w,o,o,o,o,w,o,o,o,o,w,w,w],
+		[w,G,G,G,G,G,w,w,o,o,o,o,w,o,o,o,o,w,w,w],
+		[w,R,R,R,R,R,w,w,o,o,o,o,w,o,o,o,o,r,g,w],
+		[w,G,G,G,G,G,w,w,o,o,o,o,R,o,o,o,o,w,w,w],
+		[w,R,R,R,R,R,w,w,o,o,o,o,R,o,B,o,o,w,w,w],
+		[w,G,G,G,G,C,w,w,o,o,o,o,R,o,o,o,o,w,w,w],
 		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
+	]
+	terminal_dialogue = [
 	]

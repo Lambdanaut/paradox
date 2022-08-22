@@ -56,12 +56,9 @@ func _ready():
 
 	# Create the pool of AudioStreamPlayer2D nodes for sound effects
 	for i in NUM_PLAYERS:
-		var p = AudioStreamPlayer2D.new()
+		var p = AudioStreamPlayer.new()
 		p.connect("finished", self, "_on_stream_finished", [p])
 		p.bus = BUS
-		
-		p.max_distance = DEFAULT_SOUND_RADIUS
-		p.attenuation = 2.0  # Exponentially decrease sound as we move from its location
 		
 		_available_players.append(p)
 		add_child(p)
@@ -69,13 +66,11 @@ func _ready():
 func _physics_process(delta):
 	if not _sfx_queue.empty() and not _available_players.empty():
 		# Play a queued sound if any players are available.
-		var available_audio_stream: AudioStreamPlayer2D = _available_players.pop_front()
+		var available_audio_stream: AudioStreamPlayer = _available_players.pop_front()
 
 		var queued_sfx: Array = _sfx_queue.pop_front()
 		var sfx_name: Resource = queued_sfx[0]
 		var sfx_position: Vector2 = queued_sfx[1]
-
-		available_audio_stream.global_position = sfx_position
 
 		available_audio_stream.set_volume_db(DEFAULT_SFX_VOLUME)
 		available_audio_stream.stream = sfx_name
@@ -83,7 +78,6 @@ func _physics_process(delta):
 
 func _on_stream_finished(stream):
 	# When finished playing a stream, make the player available again.
-	stream.global_position = Vector2.ZERO
 	_available_players.append(stream)
 
 func initialize(default_bgm:="", bgm_enabled:=true):

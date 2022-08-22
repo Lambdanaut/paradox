@@ -21,7 +21,7 @@ func _init():
 		"Loading message inbox contents...",
 		"New message received -10 minutes ago\n> from sarahg@sire.jp to charnelf@sire.jp",
 		"[color=#ffe3c8]Charnel! I just received your message in my inbox. Temporal effects seem to be affecting technology as well.[/color]",
-		"[color=#ffe3c8]If you've already started going, don't stop. Things aren't any better on Earth right now.[/color]",
+		"[color=#ffe3c8]If you've already started going, don't stop. Things aren't any better here on Earth right now.[/color]",
 		"[color=#ffe3c8]The effects from Gerlache are reaching at least this far...[/color]",
 		"[color=#ffe3c8]And... that...[/color]",
 		"[color=#ffe3c8]well.. that was one hell of a time to choose to make a confession.[/color]",

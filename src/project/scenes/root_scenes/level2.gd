@@ -17,11 +17,11 @@ func _init():
 	]
 
 	terminal_dialogue = [
-		"Loading message outbox contents...",
+		"Loading your sent message outbox contents...",
 		"Message sent 1 hour ago \n> from charnelf@sire.jp to sarahg@sire.jp",
 		"[color=#ffe3c8]Hello? Sarah, I need a response 10 minutes ago, and with the way things are going I might just got it.[/color]",
 		"[color=#ffe3c8]Seriously though, I'm seeing temporal anomalies out the wazoo.[/color]",
-		"[color=#ffe3c8]If you don't respond within the hour, I'm going into the base.[/color]",
+		"[color=#ffe3c8]If you don't respond within the hour, I'm going into the containment area.[/color]",
 		"[color=#ffe3c8]If it comes to that, and I don't make it back...[/color]",
 		"[color=#ffe3c8]I love you.[/color]",
 	]
