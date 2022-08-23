@@ -20,7 +20,7 @@ func _init():
 		"Document revisions found in `M5R1-containment-procedures.md`\n> Opening document",
 		"[color=#ffe3c8]CC: engineering_team@sire.jp[/color]",
 		"[color=#ffe3c8]As per the requests of the chief information officer, containment procedures are now in effect for M5R1.[/color]",
-		"[color=#ffe3c8]Procedures include a several-level multi-floor buffer between the server room housing M5R1 and the rest of the station.[/color]",
+		"[color=#ffe3c8]Procedures include a multi-floor buffer between the server room housing M5R1 and the rest of the station.[/color]",
 		"[color=#ffe3c8]Due to the multi-button patented design, at least two personel are required at all times to traverse the containment zone.[/color]",
 		"[color=#ffe3c8]In the case of any attempted breach, contact Charnel (charnelf@sire.jp) immediately.[/color]",
 		"[color=#ffe3c8]For all other inquiries into containment procedures or access requests to interact with M5R1, email the CIO. (levim@sire.jp)[/color]",

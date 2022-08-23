@@ -5,7 +5,7 @@ func _init():
 	map = [
 		[w,w,D,w,w,w,w,w,w,P,w,w,w,w,w,w,w,w,w,w],
 		[w,w,o,w,w,w,w,w,o,o,o,w,w,w,w,o,o,w,w,w],
-		[w,w,R,w,R,G,R,G,o,o,o,G,G,R,R,o,o,w,o,w],
+		[w,w,R,w,R,G,R,G,o,o,o,G,G,R,R,o,o,w,w,w],
 		[w,w,G,w,G,w,w,w,o,o,r,w,w,w,w,B,o,w,w,w],
 		[w,w,R,w,R,w,w,w,g,B,g,r,G,G,G,R,o,w,w,w],
 		[w,w,G,w,G,w,w,w,o,o,o,o,w,w,w,w,w,w,w,w],

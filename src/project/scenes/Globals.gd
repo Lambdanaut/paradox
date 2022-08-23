@@ -100,6 +100,7 @@ func progress_time(x_input: int, y_input: int):
 
 	else:
 		AudioManager.play("cant-move")
+		yield(get_tree().create_timer(0.5), "timeout")
 
 		if lose_queued:
 			# Force the player animation if we're going to die there

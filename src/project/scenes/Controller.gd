@@ -21,13 +21,13 @@ func _physics_process(delta):
 	else:
 		var x_input: int = 0
 		var y_input: int = 0
-		if Input.is_action_just_pressed("ui_right"):
+		if Input.is_action_pressed("ui_right"):
 			x_input = 1
-		elif Input.is_action_just_pressed("ui_left"):
+		elif Input.is_action_pressed("ui_left"):
 			x_input = -1
-		elif Input.is_action_just_pressed("ui_up"):
+		elif Input.is_action_pressed("ui_up"):
 			y_input = -1
-		elif Input.is_action_just_pressed("ui_down"):
+		elif Input.is_action_pressed("ui_down"):
 			y_input = 1
 
 		if (x_input or y_input) and not (x_input and y_input):
