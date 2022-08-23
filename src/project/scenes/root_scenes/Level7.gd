@@ -32,7 +32,7 @@ func _init():
 		"[color=#ffe3c8]If my calculations are correct, you can reach the wormhole before its gravity gets strong enough to destroy the base.[/color]",
 		"[color=#ffe3c8]I know this sounds crazy, and it is, but.. hear me out. You could leap through the wormhole.[/color]",
 		"[color=#ffe3c8]I don't know where that'll put you. There are too many factors.[/color]",
-		"[color=#ffe3c8]Maybe you'll be spat out far back enough to be able to stop M5R1 from ever being created.[/color]",
+		"[color=#ffe3c8]Maybe you'll be spat out far back enough in time to be able to stop M5R1 from ever being created.[/color]",
 		"[color=#ffe3c8]I don't know.[/color]",
 		"[color=#ffe3c8]But right now I have nothing else.[/color]",
 		"[color=#ffe3c8]I'm sorry[/color]",
