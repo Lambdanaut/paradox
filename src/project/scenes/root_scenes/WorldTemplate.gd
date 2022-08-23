@@ -87,11 +87,25 @@ func _load_map(_map: Array):
 			if piece_id == w: 
 				# Piece is a wall. Place a wall on the tilemap
 				_place_wall_at(x, y)
+				
+				# Place walls outside of the visible frame so the tilemap is clean
+				if x == 0:
+					_place_wall_at(x - 1, y)
+				if y == 0:
+					_place_wall_at(x, y - 1)
+				if x == bounds[0]:
+					_place_wall_at(x + 1, y)
+				if y == bounds[1]:
+					_place_wall_at(x, y + 1)
 
 			x += 1
 
 		y += 1
 		x = 0
+		
+		# Place additional walls right outside of frame in the top bottom left and right so the tilemap is a clean square
+		for corner_wall_pos in [ [-1, -1], [bounds[0] + 1, -1], [bounds[0] + 1, bounds[1] + 1], [-1, bounds[1] + 1] ]:
+			_place_wall_at(corner_wall_pos[0], corner_wall_pos[1])
 
 func _instantiate_obj_at(obj: Resource, x: int, y: int):
 	var instance = obj.instance()
