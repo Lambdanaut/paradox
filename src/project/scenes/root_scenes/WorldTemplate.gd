@@ -107,7 +107,7 @@ func _instantiate_tile_at(x: int, y: int):
 
 func _place_wall_at(x: int, y: int):
 	$TileMap.set_cell(x, y, 0)
-	$TileMap.update_bitmask_area(Vector2(x, y))
+	$TileMap.update_bitmask_region(Vector2(x-1, y-1), Vector2(x+1, y+1))
 
 func _calculate_world_bounds(_map: Array) -> Array:
 	return [len(_map[0]) - 1, len(_map) - 1]
