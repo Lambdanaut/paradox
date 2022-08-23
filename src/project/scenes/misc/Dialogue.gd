@@ -30,6 +30,8 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 
 	Controller.is_active = false
 
+	AudioManager.music_stream_player.volume_db = -100 #AudioManager.DEFAULT_BGM_VOLUME
+
 	while current_dialogue_index < len(dialogue):
 		var current_dialogue = dialogue[current_dialogue_index]
 		
@@ -83,6 +85,8 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 			yield(get_tree(), "idle_frame")
 		
 		current_dialogue_index += 1
+
+	AudioManager.music_stream_player.volume_db = AudioManager.DEFAULT_BGM_VOLUME
 
 	# Reactivate player to allow movement
 	Controller.is_active = true

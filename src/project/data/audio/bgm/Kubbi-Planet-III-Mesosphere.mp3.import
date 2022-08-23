@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Kubbi-Planet-III-Mesosphere.mp3-68ad3c28066582b05fa8e5a87fb6a082.mp3str"
+
+[deps]
+
+source_file="res://data/audio/bgm/Kubbi-Planet-III-Mesosphere.mp3"
+dest_files=[ "res://.import/Kubbi-Planet-III-Mesosphere.mp3-68ad3c28066582b05fa8e5a87fb6a082.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
