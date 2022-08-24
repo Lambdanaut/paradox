@@ -29,6 +29,7 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 	$SpeechBackgroundRect.visible = true
 
 	Controller.is_active = false
+	Globals.world.get_node("UI").get_node("PauseMenu").is_toggleable = false
 
 	AudioManager.music_stream_player.volume_db = AudioManager.DEFAULT_BGM_VOLUME * 2
 
@@ -90,6 +91,7 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 
 	# Reactivate player to allow movement
 	Controller.is_active = true
+	Globals.world.get_node("UI").get_node("PauseMenu").is_toggleable = true
 	
 	# Emit a signal to let the owner know that we're complete
 	# Pass along a list of responses given

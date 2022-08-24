@@ -46,6 +46,7 @@ const levels: Array = [
 	preload("res://scenes/root_scenes/Level8.tscn"),
 	preload("res://scenes/root_scenes/Level9.tscn"),
 ]
+var levels_unlocked: int = 10
 
 var world = null
 var player = null

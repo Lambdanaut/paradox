@@ -5,6 +5,7 @@ const URL := "https://lambdanaut.com"
 
 func _init():
 	restart_enabled = false
+	bgm_enabled = false
 	map = [
 		[w,w,w,w,w,w,w,w,w,D,w,w,w,w,w,w,w,w,w,w],
 		[w,w,w,w,w,w,w,w,o,o,o,C,w,w,w,w,w,w,w,w],
@@ -31,6 +32,7 @@ func _ready():
 	Controller.is_active = false
 	
 	$SplashScreen.visible=true
+	$UI/PauseMenu.is_toggleable = false
 	
 	yield(get_tree().create_timer(1.5), "timeout")
 	
@@ -44,5 +46,6 @@ func _ready():
 	yield($Tween, "tween_completed")
 	
 	$SplashScreen.queue_free()
+	$UI/PauseMenu.is_toggleable = true
 
 	

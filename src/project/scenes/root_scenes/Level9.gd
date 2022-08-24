@@ -15,4 +15,3 @@ func _init():
 		[w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w],
 		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 	]
-

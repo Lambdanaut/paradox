@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pause-menu.wav-91c9c8bea56d8ce530252709676ba78a.sample"
+
+[deps]
+
+source_file="res://data/audio/sfx/pause-menu.wav"
+dest_files=[ "res://.import/pause-menu.wav-91c9c8bea56d8ce530252709676ba78a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

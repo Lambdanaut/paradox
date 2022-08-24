@@ -3,16 +3,16 @@ extends "res://scenes/root_scenes/WorldTemplate.gd"
 
 func _init():
 	map = [
-		[w,w,w,D,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
-		[w,w,w,o,w,o,o,o,o,o,P,o,o,o,o,o,w,w,w,w],
-		[w,w,w,o,w,o,o,o,o,o,o,o,o,o,o,o,w,w,w,w],
-		[w,w,w,o,w,G,w,g,w,w,R,w,w,r,w,R,w,w,w,w],
+		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
+		[w,w,w,w,w,o,o,o,o,o,P,o,o,o,o,o,w,w,w,w],
+		[w,w,w,w,w,o,o,o,o,o,o,o,o,o,o,o,w,w,w,w],
+		[w,w,w,D,w,G,w,g,w,w,R,w,w,r,w,R,w,w,w,w],
 		[w,w,w,o,w,G,w,G,w,o,G,o,w,G,w,R,w,w,w,w],
-		[w,w,w,o,o,r,w,R,o,o,g,o,o,o,o,g,r,w,w,w],
-		[w,w,w,o,o,o,w,w,w,o,g,o,o,o,o,w,w,w,w,w],
-		[w,w,w,o,o,o,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
-		[w,w,w,w,o,o,w,g,g,w,w,w,w,w,w,w,w,w,w,w],
-		[w,w,w,w,o,o,o,o,o,C,w,w,w,w,w,w,w,w,w,w],
+		[w,w,C,o,o,r,w,R,o,o,g,o,o,o,o,g,r,w,w,w],
+		[w,w,w,w,w,w,w,w,w,o,g,o,o,o,o,w,w,w,w,w],
+		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
+		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
+		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 	]
 

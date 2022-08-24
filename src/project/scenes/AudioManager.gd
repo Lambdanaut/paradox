@@ -17,7 +17,7 @@ const SILENCE_VOLUME: float = -80.0  # Sound is barely perceptible at this volum
 
 const _sound_map := {
 	# Music (don't preload music because it's a lot to keep in memory)
-	"planet-iii" : "res://data/audio/bgm/Kubbi-Planet-III-Mesosphere.mp3",
+	"planet-iii": "res://data/audio/bgm/Kubbi-Planet-III-Mesosphere.mp3",
 
 	# Sound fx
 	"terminal": preload("res://data/audio/sfx/terminal.wav"),
@@ -28,6 +28,8 @@ const _sound_map := {
 	"epoch": preload("res://data/audio/sfx/epoch.wav"),
 	"lose": preload("res://data/audio/sfx/lose.wav"),
 	"win": preload("res://data/audio/sfx/win.wav"),
+	"pause-menu": preload("res://data/audio/sfx/pause-menu.wav"),
+	"menu-move": preload("res://data/audio/sfx/menu-move.wav"),
 }
 
 var is_bgm_enabled := true

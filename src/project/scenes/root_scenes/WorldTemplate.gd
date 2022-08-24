@@ -43,6 +43,7 @@ var map: Array = [
 	[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 ]
 var restart_enabled: bool = true
+var bgm_enabled: bool = true
 var terminal_dialogue: Array = []
 
 var bounds: Array = [0, 0]
@@ -56,6 +57,9 @@ func _ready():
 	_load_map(map)
 	
 	Globals.connect("time_direction_changed", self, "_on_time_direction_changed")
+
+	if bgm_enabled and not AudioManager.music_stream_player.playing:
+		AudioManager.play_bgm("planet-iii")
 
 func _load_map(_map: Array):
 	var x: int = 0

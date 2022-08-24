@@ -4,6 +4,7 @@
 [ext_resource path="res://data/sprites/pieces/gate/gate-green.png" type="Texture" id=2]
 
 [node name="Gate" type="Node2D"]
+position = Vector2( 0, -4 )
 z_index = -2
 script = ExtResource( 1 )
 

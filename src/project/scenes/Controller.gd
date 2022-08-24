@@ -11,7 +11,7 @@ func _physics_process(delta):
 
 	if not Globals.player:
 		return
-		
+
 	if Globals.time_progression_active:
 		return
 

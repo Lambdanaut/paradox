@@ -21,7 +21,3 @@ func _init():
 		"Please submit your \"workout\" logs to the helpdesk on a bi-weekly basis.",
 		"Thank you for your help in making the Gerlache facility a safe environment for all. \n- The Gerlache People-Ops Team",
 	]
-
-func _ready():
-	if not AudioManager.music_stream_player.playing:
-		AudioManager.play_bgm("planet-iii")
