@@ -30,6 +30,7 @@ const _sound_map := {
 	"win": preload("res://data/audio/sfx/win.wav"),
 	"pause-menu": preload("res://data/audio/sfx/pause-menu.wav"),
 	"menu-move": preload("res://data/audio/sfx/menu-move.wav"),
+	"level-changed": preload("res://data/audio/sfx/level-changed.wav"),
 }
 
 var is_bgm_enabled := true

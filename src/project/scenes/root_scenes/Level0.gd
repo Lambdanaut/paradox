@@ -28,6 +28,7 @@ func _init():
 	]
 
 func _ready():
+	AudioManager.stop_bgm()
 	Globals.set_epoch(INF)
 	Controller.is_active = false
 	

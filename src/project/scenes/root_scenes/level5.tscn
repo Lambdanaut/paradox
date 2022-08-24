@@ -5,10 +5,3 @@
 
 [node name="Level5" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-
-[node name="DeathText" parent="UI" index="2"]
-text = "  
-  [wave] TIME REVERTED  BY  PARADOX[/wave]"
-
-[node name="LevelList" parent="UI/PauseMenu" index="2"]
-text = "[color=#80ffb3]>[/color]   0   1   2   3   4   5   6   7   8   9 "

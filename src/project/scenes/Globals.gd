@@ -6,6 +6,7 @@ signal time_direction_changed(new_direction)
 const AUTHOR: String = "Lambdanaut"
 const AUTHOR_URL: String = "https://lambdanaut.com"
 const NOTES: String = "Starring Charnel Fontaine and Sarah Greene"
+const SPECIAL_THANKS: Array = ["Kubbi", "H00DED CR0W"]
 
 const INITIAL_TIME: int = 9
 
@@ -32,8 +33,6 @@ const BOX_PIECE_ID: int = 10
 const TERMINAL_PIECE_ID: int = 11
 const HOURGLASS_PIECE_ID: int = 12
 
-
-var level_index: int = 0
 const levels: Array = [
 	preload("res://scenes/root_scenes/Level0.tscn"),
 	preload("res://scenes/root_scenes/Level1.tscn"),
@@ -46,7 +45,9 @@ const levels: Array = [
 	preload("res://scenes/root_scenes/Level8.tscn"),
 	preload("res://scenes/root_scenes/Level9.tscn"),
 ]
-var levels_unlocked: int = 10
+
+var level_index: int = 0
+var levels_unlocked: int = 1
 
 var world = null
 var player = null
@@ -142,6 +143,13 @@ func queue_win():
 func queue_lose():
 	lose_queued = true
 
+func change_level(new_level_i: int):
+	level_index = new_level_i
+	if new_level_i >= levels_unlocked:
+		levels_unlocked = new_level_i + 1
+	clear_registry()
+	get_tree().change_scene_to(levels[level_index])
+
 func add_piece(piece):
 	pieces.append(piece)
 
@@ -161,12 +169,9 @@ func to_global_pos(val: int) -> float:
 
 func _lose():  # Call queue_lose() unless you know what you're doing
 	AudioManager.play("lose")
-	clear_registry()
+	change_level(level_index)
 	lost_last_scene = true
-	get_tree().change_scene_to(levels[level_index])
 
 func _next_level():  # Call queue_next_level() unless you know what you're doing
 	AudioManager.play("win")
-	level_index += 1
-	clear_registry()
-	get_tree().change_scene_to(levels[level_index])
+	change_level(level_index + 1)

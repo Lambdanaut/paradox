@@ -12,8 +12,6 @@ func _ready():
 	visible = false
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_pause"):
-		_toggle_is_active()
 	if _is_active:
 		if Input.is_action_just_pressed("ui_right"):
 			AudioManager.play("menu-move")
@@ -21,6 +19,13 @@ func _process(delta):
 		elif Input.is_action_just_pressed("ui_left"):
 			AudioManager.play("menu-move")
 			_set_selected_level(_selected_level-1)
+		elif Input.is_action_just_pressed("ui_pause") and \
+					_selected_level != Globals.level_index:
+			AudioManager.play("level-changed")
+			Globals.change_level(_selected_level)
+
+	if Input.is_action_just_pressed("ui_pause"):
+		_toggle_is_active()
 
 func _toggle_is_active():
 	if !is_toggleable:

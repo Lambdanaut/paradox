@@ -73,7 +73,9 @@ func _load_map(_map: Array):
 			if resource:
 				var instance = _instantiate_obj_at(resource, x, y)
 				
-				if piece_id == Globals.PLAYER_PIECE_ID and map[y-1][x] == Globals.WALL_PIECE_ID:
+				if piece_id == Globals.PLAYER_PIECE_ID and \
+					map[y-1][x] == Globals.WALL_PIECE_ID and \
+					y != 0:
 					_instantiate_obj_at(preload("res://scenes/pieces/Door-Closed.tscn"), x, y)
 
 				if piece_id == Globals.GATE_RED_PIECE_ID:

@@ -12,7 +12,7 @@ func _init():
 		[w,w,R,w,R,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 		[w,w,G,R,G,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 		[w,w,o,o,o,C,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
-		[w,w,o,o,o,o,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
+		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 	]
 	terminal_dialogue = [
