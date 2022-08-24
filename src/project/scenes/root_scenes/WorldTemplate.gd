@@ -61,7 +61,7 @@ func _ready():
 	Globals.connect("time_direction_changed", self, "_on_time_direction_changed")
 
 	if bgm_enabled:
-		if AudioManager.music_stream_player.playing:
+		if not AudioManager.music_stream_player.playing:
 			AudioManager.play_bgm("planet-iii")
 	else:
 		AudioManager.stop_bgm()
