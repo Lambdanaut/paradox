@@ -1,5 +1,7 @@
 extends Node2D
 
+const SPLASH_SCREEN_FADE_DURATION: float = 3.0
+
 # Object Ids (for convenience when map-making)
 var o: int = Globals.TILE_PIECE_ID
 var D: int = Globals.DOOR_PIECE_ID
@@ -58,8 +60,47 @@ func _ready():
 	
 	Globals.connect("time_direction_changed", self, "_on_time_direction_changed")
 
-	if bgm_enabled and not AudioManager.music_stream_player.playing:
-		AudioManager.play_bgm("planet-iii")
+	if bgm_enabled:
+		if AudioManager.music_stream_player.playing:
+			AudioManager.play_bgm("planet-iii")
+	else:
+		AudioManager.stop_bgm()
+	
+	# Run tasks for if the game just started
+	if Globals.game_just_started:
+		if not Globals.game_loaded and Globals._load_game():
+			return
+
+		Globals.game_just_started = false
+		Controller.is_active = false
+		
+		$SplashScreen.visible=true
+		$UI/PauseMenu.is_toggleable = false
+		
+		yield(get_tree().create_timer(1.5), "timeout")
+		
+		$Tween.interpolate_property($SplashScreen, "modulate",
+			Color(1, 1, 1, 1), Color(1, 1, 1, 0), SPLASH_SCREEN_FADE_DURATION,
+			Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		$Tween.start()
+		
+		yield(get_tree().create_timer(SPLASH_SCREEN_FADE_DURATION * 0.5), "timeout")
+		
+		Controller.is_active = true
+
+		yield($Tween, "tween_completed")
+
+		$SplashScreen.queue_free()
+		$UI/PauseMenu.is_toggleable = true
+	
+	# Update next level text
+	if not Globals.lost_last_scene and Globals.level_index > 0:
+		$UI/NextLevelText.visible = true
+		$UI/NextLevelText.bbcode_text = "LEVEL " + str(Globals.level_index)
+		yield(get_tree().create_timer(4.0), "timeout")
+		$UI/NextLevelText.visible = false
+	else:
+		$UI/NextLevelText.visible = false
 
 func _load_map(_map: Array):
 	var x: int = 0

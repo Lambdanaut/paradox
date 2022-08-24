@@ -27,26 +27,3 @@ func _init():
 		"Thank you, and have a wonderful day!"
 	]
 
-func _ready():
-	AudioManager.stop_bgm()
-	Globals.set_epoch(INF)
-	Controller.is_active = false
-	
-	$SplashScreen.visible=true
-	$UI/PauseMenu.is_toggleable = false
-	
-	yield(get_tree().create_timer(1.5), "timeout")
-	
-	Controller.is_active = true
-	
-	$Tween.interpolate_property($SplashScreen, "modulate",
-		Color(1, 1, 1, 1), Color(1, 1, 1, 0), 3.0,
-		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-	$Tween.start()
-
-	yield($Tween, "tween_completed")
-	
-	$SplashScreen.queue_free()
-	$UI/PauseMenu.is_toggleable = true
-
-	

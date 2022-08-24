@@ -8,6 +8,8 @@ const AUTHOR_URL: String = "https://lambdanaut.com"
 const NOTES: String = "Starring Charnel Fontaine and Sarah Greene"
 const SPECIAL_THANKS: Array = ["Kubbi", "H00DED CR0W"]
 
+const SAVE_FILENAME = "user://savegame.save"
+
 const INITIAL_TIME: int = 9
 
 const TILE_WIDTH: int = 16
@@ -59,6 +61,8 @@ var engaged_green_button_count: int = 0
 var win_queued := false
 var lose_queued := false
 var lost_last_scene := false
+var game_just_started := true
+var game_loaded := false
 var pieces := []
 
 func clear_registry():
@@ -149,6 +153,7 @@ func change_level(new_level_i: int):
 		levels_unlocked = new_level_i + 1
 	clear_registry()
 	get_tree().change_scene_to(levels[level_index])
+	_save_game()
 
 func add_piece(piece):
 	pieces.append(piece)
@@ -175,3 +180,37 @@ func _lose():  # Call queue_lose() unless you know what you're doing
 func _next_level():  # Call queue_next_level() unless you know what you're doing
 	AudioManager.play("win")
 	change_level(level_index + 1)
+
+## Saves the current save state to the save file
+func _save_game():
+		var save_game = File.new()
+		save_game.open(SAVE_FILENAME, File.WRITE)
+
+		var save_state: String = str(levels_unlocked)
+
+		# Store the save dictionary as a new line in the save file.
+		save_game.store_string(save_state)
+
+		save_game.close()
+
+## Loads a save from the current game file
+## Returns boolean indicating whether load was successful or not
+func _load_game() -> bool:
+		var save_game = File.new()
+		if not save_game.file_exists(SAVE_FILENAME):
+				# Error! We don't have a save to load.
+				game_loaded = false
+				return false
+
+		# Open the save file and load it from JSON
+		save_game.open(SAVE_FILENAME, File.READ)
+		var loaded_string = save_game.get_as_text()
+		levels_unlocked = int(loaded_string)
+		
+		change_level(levels_unlocked - 1)
+
+		save_game.close()
+		
+		game_loaded = true
+
+		return true
