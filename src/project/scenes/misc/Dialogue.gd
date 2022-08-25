@@ -105,3 +105,10 @@ func _decorate_dialogue_string(dialogue_string):
 
 func toggle_dialogue_visible(new_visible: bool):
 	$SpeechBackgroundRect.visible = new_visible
+
+
+func _unhandled_input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			next_dialogue_input_received = true
+		

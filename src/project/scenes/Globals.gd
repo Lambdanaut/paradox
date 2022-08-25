@@ -16,7 +16,7 @@ const SAVE_FILENAME = "user://savegame.save"
 
 const INITIAL_TIME: int = 9
 
-const MINIMUM_SWIPE_LENGTH: float = 45.0
+const MINIMUM_SWIPE_LENGTH: float = 35.0
 
 const TILE_WIDTH: int = 16
 const TILE_HEIGHT: int = 16
