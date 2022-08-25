@@ -15,6 +15,8 @@ anchor_bottom = 0.9
 margin_left = 9.78629
 margin_top = -32.0
 margin_right = -10.2137
+mouse_filter = 2
+input_pass_on_modal_close_click = false
 stretch_mode = 1
 
 [node name="Speech" type="RichTextLabel" parent="SpeechBackgroundRect"]
@@ -27,6 +29,7 @@ margin_top = -2.7936
 margin_right = -19.3
 margin_bottom = 6.60641
 rect_clip_content = false
+mouse_filter = 2
 custom_colors/default_color = Color( 0.501961, 1, 0.701961, 1 )
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
