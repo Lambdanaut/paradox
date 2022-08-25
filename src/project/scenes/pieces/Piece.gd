@@ -47,7 +47,7 @@ func move_to(new_x: int, new_y: int, _colliding_piece=null, force: bool=false) -
 		return false
 
 	var pieces_at_new_pos: Array = Globals.get_pieces_at(new_x, new_y)
-	
+
 	# Call on_collided_with() for every piece we'll be colliding with
 	var can_move_piece: bool = true
 	if not self in pieces_at_new_pos:

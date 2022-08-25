@@ -10,7 +10,7 @@ float spiral(vec2 m, float t) {
 void fragment(){
     // Important vector that determines the center of the spiral
     // Change OFFSET in order to move the spiral's center. 
-    vec2 OFFSET = vec2(0.68, 0.643);
+    vec2 OFFSET = vec2(0.696, 0.648);
     
     vec4 col = texture(TEXTURE, UV); 
 	float t = TIME * 0.1;

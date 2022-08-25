@@ -32,7 +32,8 @@ func set_flip_h(new_flip_h: bool):
 
 func on_collided_with(other_piece, move_x: int, move_y: int) -> bool:
 	if other_piece.piece_id == Globals.PLAYER_PIECE_ID:
-		Globals.queue_lose()
+		if other_piece != Globals.player:
+			Globals.queue_lose()
 	
 		# Previously we could be pushed by the player
 #	if other_piece == Globals.player:

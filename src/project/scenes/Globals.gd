@@ -5,7 +5,7 @@ signal time_direction_changed(new_direction)
 
 # DEBUG CONSTANTS
 const SHOW_SPLASH_SCREEN_WHEN_IN_DEBUG_MODE := false
-const LOAD_GAME_FILE_WHEN_IN_DEBUG_MODE := true
+const LOAD_GAME_FILE_WHEN_IN_DEBUG_MODE := false
 
 const AUTHOR: String = "Lambdanaut"
 const AUTHOR_URL: String = "https://lambdanaut.com"
