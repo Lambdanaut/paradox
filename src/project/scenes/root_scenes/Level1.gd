@@ -15,6 +15,7 @@ func _init():
 		[w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w,o,o,o,w],
 		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 	]
+
 	terminal_dialogue = [
 		"All Gerlache facility employees are expected to make routine trips to the gym and recreational spaces on a daily basis.",
 		"Remember, muscular and skeletal atrophy is accelerated while on premise.",

@@ -1,5 +1,7 @@
 extends Node2D
 
+const Y_OFFSET: float = 2.0  # How many pixels to add to all board pieces
+
 const SPLASH_SCREEN_FADE_DURATION: float = 3.0
 
 # Object Ids (for convenience when map-making)
@@ -56,7 +58,7 @@ func _init():
 
 func _ready():
 	bounds = _calculate_world_bounds(map)
-	_load_map(map)
+	_initialize_map(map)
 	
 	Globals.connect("time_direction_changed", self, "_on_time_direction_changed")
 
@@ -65,11 +67,20 @@ func _ready():
 			AudioManager.play_bgm("planet-iii")
 	else:
 		AudioManager.stop_bgm()
-	
-	# Run tasks for if the game just started
-	if Globals.game_just_started:
-		if not Globals.game_loaded and Globals._load_game():
+		
+	$TileMap.global_position.y += Y_OFFSET
+
+	if Globals.game_just_started and not Globals.game_loaded and \
+			(OS.has_feature("release") or Globals.LOAD_GAME_FILE_WHEN_IN_DEBUG_MODE):
+		var load_game_result: bool = Globals._load_game()
+		if load_game_result:
+			# If we successfully loaded the game, then skip this 
+			# initialization because we're about to swap out levels.
 			return
+
+	# Run tasks for if the game just started
+	if Globals.game_just_started and \
+			(OS.has_feature("release") or Globals.SHOW_SPLASH_SCREEN_WHEN_IN_DEBUG_MODE):
 
 		Globals.game_just_started = false
 		Controller.is_active = false
@@ -102,7 +113,7 @@ func _ready():
 	else:
 		$UI/NextLevelText.visible = false
 
-func _load_map(_map: Array):
+func _initialize_map(_map: Array):
 	var x: int = 0
 	var y: int = 0
 	for row in _map:

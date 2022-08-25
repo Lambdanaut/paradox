@@ -84,7 +84,7 @@ func set_piece_pos(new_x: int, new_y: int, animate_piece: bool=true):
 	z_index = _z_index_cached + new_y  # So we draw lower pieces on top of higher pieces
 
 	var new_global_x: float = Globals.to_global_pos(new_x)
-	var new_global_y: float = Globals.to_global_pos(new_y)
+	var new_global_y: float = Globals.to_global_pos(new_y) + Globals.world.Y_OFFSET
 
 	var does_animate = animate_movement(new_global_x, new_global_y) if animate_piece else false
 

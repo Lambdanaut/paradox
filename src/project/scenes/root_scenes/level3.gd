@@ -16,7 +16,6 @@ func _init():
 		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 	]
 
-
 	terminal_dialogue = [
 		"Loading message inbox contents...",
 		"New message received -10 minutes ago\n> from sarahg@sire.jp to charnelf@sire.jp",

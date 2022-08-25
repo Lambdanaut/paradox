@@ -3,6 +3,10 @@ extends Node
 signal time_progressed(new_epoch)
 signal time_direction_changed(new_direction)
 
+# DEBUG CONSTANTS
+const SHOW_SPLASH_SCREEN_WHEN_IN_DEBUG_MODE := false
+const LOAD_GAME_FILE_WHEN_IN_DEBUG_MODE := true
+
 const AUTHOR: String = "Lambdanaut"
 const AUTHOR_URL: String = "https://lambdanaut.com"
 const NOTES: String = "Starring Charnel Fontaine and Sarah Greene"
@@ -11,6 +15,8 @@ const SPECIAL_THANKS: Array = ["Kubbi", "H00DED CR0W"]
 const SAVE_FILENAME = "user://savegame.save"
 
 const INITIAL_TIME: int = 9
+
+const MINIMUM_SWIPE_LENGTH: float = 45.0
 
 const TILE_WIDTH: int = 16
 const TILE_HEIGHT: int = 16
@@ -60,6 +66,7 @@ var engaged_red_button_count: int = 0
 var engaged_green_button_count: int = 0
 var win_queued := false
 var lose_queued := false
+var change_level_queued := false
 var lost_last_scene := false
 var game_just_started := true
 var game_loaded := false
@@ -75,6 +82,7 @@ func clear_registry():
 	engaged_green_button_count = 0
 	win_queued = false
 	lose_queued = false
+	change_level_queued = false
 	lost_last_scene = false
 	pieces.clear()
 
@@ -148,12 +156,21 @@ func queue_lose():
 	lose_queued = true
 
 func change_level(new_level_i: int):
+	if change_level_queued: 
+		return
+
+	change_level_queued = true
+	for piece in pieces:
+		if piece.is_currently_animating:
+			yield(piece, "completed_movement_animation")
+	
 	level_index = new_level_i
 	if new_level_i >= levels_unlocked:
 		levels_unlocked = new_level_i + 1
 	clear_registry()
 	get_tree().change_scene_to(levels[level_index])
 	_save_game()
+	change_level_queued = false
 
 func add_piece(piece):
 	pieces.append(piece)
