@@ -5,6 +5,3 @@
 
 [node name="Level0" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-
-[node name="BgmEnabledHeader" parent="UI/PauseMenu" index="3"]
-text = "LEVELS UNLOCKED"

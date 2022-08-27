@@ -60,7 +60,7 @@ func _ready():
 	bounds = _calculate_world_bounds(map)
 	_initialize_map(map)
 	
-	Globals.connect("time_direction_changed", self, "_on_time_direction_changed")
+	Globals.connect("time_progressed", self, "_on_time_progressed")
 
 	if bgm_enabled and Globals.bgm_enabled:
 		Globals.play_bgm()
@@ -183,8 +183,8 @@ func _place_wall_at(x: int, y: int):
 func _calculate_world_bounds(_map: Array) -> Array:
 	return [len(_map[0]) - 1, len(_map) - 1]
 
-func _on_time_direction_changed(new_direction: bool):
-	if new_direction:
+func _on_time_progressed(new_epoch: int, last_epoch: int):
+	if new_epoch == 0 and last_epoch < 0:
 		Globals.player.clone(
 			Globals.player.start_pos[0],
 			Globals.player.start_pos[1])

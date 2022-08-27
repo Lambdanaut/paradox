@@ -12,7 +12,7 @@ func _init():
 func _ready():
 	Globals.connect("time_progressed", self, "_on_time_progressed")
 
-func _on_time_progressed(new_epoch: int):
+func _on_time_progressed(new_epoch: int, last_epoch: int):
 	
 	if duration_left < 0:
 		queue_free()

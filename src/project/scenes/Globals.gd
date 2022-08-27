@@ -1,11 +1,10 @@
 extends Node
 
-signal time_progressed(new_epoch)
-signal time_direction_changed(new_direction)
+signal time_progressed(new_epoch, last_epoch)
 
 # DEBUG CONSTANTS
 const SHOW_SPLASH_SCREEN_WHEN_IN_DEBUG_MODE := false
-const LOAD_GAME_FILE_WHEN_IN_DEBUG_MODE := true
+const LOAD_GAME_FILE_WHEN_IN_DEBUG_MODE := false
 
 const AUTHOR: String = "Lambdanaut"
 const AUTHOR_URL: String = "https://lambdanaut.com"
@@ -14,7 +13,7 @@ const SPECIAL_THANKS: Array = ["Kubbi", "H00DED CR0W"]
 
 const SAVE_FILENAME = "user://savegame.save"
 
-const INITIAL_TIME: int = 9
+const INITIAL_EPOCH: int = -9
 
 const MINIMUM_SWIPE_LENGTH: float = 35.0
 
@@ -59,9 +58,8 @@ var levels_unlocked: int = 1
 
 var world = null
 var player = null
-var epoch: int = INITIAL_TIME
+var epoch: int = INITIAL_EPOCH
 var time_progression_active := false
-var forward_increment_time := false
 var engaged_red_button_count: int = 0
 var engaged_green_button_count: int = 0
 var win_queued := false
@@ -78,9 +76,8 @@ var bgm_enabled := true
 func clear_registry():
 	world = null
 	player = null
-	epoch = INITIAL_TIME
+	epoch = INITIAL_EPOCH
 	time_progression_active = false
-	forward_increment_time = false
 	engaged_red_button_count = 0
 	engaged_green_button_count = 0
 	win_queued = false
@@ -134,23 +131,15 @@ func progress_time(x_input: int, y_input: int):
 	time_progression_active = false
 
 func increment_epoch():
-	var increment: int = 1 if forward_increment_time else -1
-	var new_epoch: int = epoch + increment
-
-	if new_epoch == 0 and not forward_increment_time:
-		reverse_time_direction()
+	var new_epoch: int = epoch + 1
 		
 	set_epoch(new_epoch)
 
 func set_epoch(new_epoch: int):
+	var last_epoch: int = epoch
 	epoch = new_epoch
 
-	emit_signal("time_progressed", epoch)
-
-func reverse_time_direction():
-	forward_increment_time = !forward_increment_time
-	
-	emit_signal("time_direction_changed", forward_increment_time)
+	emit_signal("time_progressed", epoch, last_epoch)
 
 func queue_win():
 	win_queued = true
