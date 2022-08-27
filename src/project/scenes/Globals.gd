@@ -137,8 +137,10 @@ func regress_time():
 	time_progression_active = true
 
 	if epoch > INITIAL_EPOCH:
+		player.regress_time()
 		for piece in pieces:
-			piece.regress_time()
+			if piece != player:
+				piece.regress_time()
 		increment_epoch(-1)
 
 		AudioManager.play("regress-time")
@@ -150,7 +152,7 @@ func regress_time():
 		yield(player, "completed_movement_animation")
 
 	if lose_queued:
-		return _lose()
+		lose_queued = false
 
 	time_progression_active = false
 
@@ -203,6 +205,11 @@ func play_bgm():
 
 func add_piece(piece):
 	pieces.append(piece)
+	
+	pieces.sort_custom(self, "_process_order_sort")
+
+func _process_order_sort(a, b) -> bool:
+	return a.process_order > b.process_order
 
 func remove_piece(piece):
 	pieces.erase(piece)

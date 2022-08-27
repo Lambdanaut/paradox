@@ -5,6 +5,7 @@ const ANIMATION_DURATION: float = 0.35
 
 func _init():
 	piece_id = Globals.BOX_PIECE_ID
+	process_order = -3
 
 func on_collided_with(other_piece, move_x: int, move_y: int) -> bool:
 	# Don't let us move if we're in a gate

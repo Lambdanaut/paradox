@@ -13,6 +13,7 @@ var was_collided_with_this_turn := false
 
 func _init():
 	piece_id = Globals.BUTTON_RED_PIECE_ID
+	process_order = -5
 
 func progress_time(x_delta=null, y_delta=null) -> bool:
 	was_collided_with_this_turn = false

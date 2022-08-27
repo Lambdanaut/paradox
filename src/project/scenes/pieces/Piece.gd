@@ -4,6 +4,7 @@ signal completed_movement_animation
 
 class_name Piece
 
+var process_order: int = 0  # Player process order is 0. The lower the process order, the earlier processed in a game
 var should_register_piece_on_ready: bool = true
 
 var pos: Array = [0, 0]

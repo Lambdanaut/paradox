@@ -15,6 +15,7 @@ onready var dialogue_resource = preload("res://scenes/misc/Dialogue.tscn")
 
 func _init():
 	piece_id = Globals.TERMINAL_PIECE_ID
+	process_order = -5
 
 func _ready():
 	dialogue_speech += Globals.world.terminal_dialogue
