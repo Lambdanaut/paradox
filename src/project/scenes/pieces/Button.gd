@@ -53,11 +53,13 @@ func set_button_type(new_button_type):
 		$Sprite.texture = preload("res://data/sprites/pieces/button/button-green.png")
 
 func on_collided_with(other_piece, move_x: int, move_y: int) -> bool:
+	print("collided", other_piece)
 	toggle_engaged(true)
 	was_collided_with_this_turn = true
 	return true
 
 func on_uncollided_with(other_piece, move_x: int, move_y: int) -> bool:
+	print("uncollided", other_piece)
 	if not was_collided_with_this_turn:
 		toggle_engaged(false)
 	return true

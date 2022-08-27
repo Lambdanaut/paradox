@@ -30,7 +30,7 @@ func _ready():
 
 func progress_time(x_delta=null, y_delta=null) -> bool:
 	var could_move: bool = true
-	var next_moves: Array = [[0,0]]
+	var next_moves: Array = []
 	if playback_movements:
 		next_moves = playback_movements[0]
 		could_move = true
