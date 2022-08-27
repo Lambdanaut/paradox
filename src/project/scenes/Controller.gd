@@ -19,8 +19,11 @@ func _physics_process(delta):
 		return
 
 	if is_active:
-		var cancel_input: bool = Input.is_action_just_pressed("ui_cancel")
-		if cancel_input and Globals.world.restart_enabled:
+		var cancel_input: bool = Input.is_action_just_pressed("ui_cancel")  # For restarting level
+		var select_input: bool = Input.is_action_pressed("ui_select")  # For backing up one turn
+		if select_input:
+			Globals.regress_time()
+		elif cancel_input and Globals.world.restart_enabled:
 			Globals._lose()
 		else:
 			var x_input: int = 0 + _x_swipe_input

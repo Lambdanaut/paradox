@@ -20,7 +20,7 @@ func _ready():
  
 func _process(delta):
 	# Listen for next dialogue input
-	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_select"):
+	if Input.is_action_just_pressed("ui_accept"):
 		next_dialogue_input_received = true
 
 func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Texture=null):

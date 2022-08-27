@@ -13,8 +13,11 @@ var piece_id: int = -1
 var is_currently_animating: bool = false
 
 var last_move: Array = [0, 0]
-var recorded_movements: Array = []
+var recorded_movements: Array = []  # An array of [[ [0, 1], [-1,0] ], [[0, 1], [-1,0] ], ] because a piece can move more than once a turn(like a box)
 var playback_movements: Array = []
+var playback_movements_popped: Array = []
+var child_clones: Array = []
+var clone_parent = null
 
 var _z_index_cached: int = z_index
 
@@ -23,11 +26,39 @@ func _ready():
 	if should_register_piece_on_ready:
 		Globals.add_piece(self)
 
-func progress_time() -> bool:
+func progress_time(x_delta=null, y_delta=null) -> bool:
+	var could_move: bool = false
+	var next_moves: Array
 	if playback_movements:
-		var next_move: Array = playback_movements.pop_front()
-		return move(next_move[0], next_move[1])
-	return false
+		next_moves = playback_movements[0]
+		could_move = true
+		for move in next_moves:
+			could_move = could_move and move(move[0], move[1])
+		if could_move:
+			playback_movements.pop_front()
+			playback_movements_popped.append(next_moves)
+	elif x_delta != null or y_delta != null:
+		next_moves = [[x_delta, y_delta]]
+		could_move = move(x_delta, y_delta)
+
+	if could_move:
+		recorded_movements.append(next_moves)
+		for child in child_clones:
+			child.playback_movements.append(next_moves)
+
+	return could_move
+
+func regress_time() -> bool:
+	var could_move: bool = false
+	if playback_movements_popped:
+		playback_movements.insert(0, playback_movements_popped.pop_back())
+		playback_movements.remove(abs(Globals.INITIAL_EPOCH))
+	if recorded_movements:
+		# Loop through all the recorded movements made in the last turn(*usually* just a single movement per turn)
+		for recorded_move in recorded_movements.pop_back():
+			could_move = move(recorded_move[0] * -1, recorded_move[1] * -1, null, true) and could_move
+		
+	return could_move
 
 func move(x_delta: int, y_delta: int, colliding_piece=null, force: bool=false) -> bool:
 	last_move = [x_delta, y_delta]
@@ -36,9 +67,6 @@ func move(x_delta: int, y_delta: int, colliding_piece=null, force: bool=false) -
 	var new_y: int = pos[1] + y_delta
 
 	var could_move: bool = move_to(new_x, new_y, colliding_piece, force)
-	
-	if not colliding_piece and could_move:
-		recorded_movements.append([x_delta, y_delta])
 	
 	return could_move
 
@@ -135,9 +163,11 @@ func clone(x: int, y: int):
 	var instance = self.duplicate()
 	Globals.world.add_child(instance)
 	instance.set_piece_pos(x, y)
+
+	instance.playback_movements = recorded_movements.duplicate()
 	
-	instance.recorded_movements = []
-	instance.playback_movements = recorded_movements
+	instance.clone_parent = self
+	child_clones.append(instance)
 	
 	return instance
 
@@ -155,4 +185,6 @@ func animate_movement(new_global_x: float, new_global_y: float):
 
 func destroy():
 	Globals.remove_piece(self)
+	if clone_parent != null:
+		clone_parent.child_clones.erase(self)
 	queue_free()

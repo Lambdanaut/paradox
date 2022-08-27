@@ -26,6 +26,7 @@ const _sound_map := {
 	"cant-move": preload("res://data/audio/sfx/cant-move.wav"),
 	"clone": preload("res://data/audio/sfx/clone.wav"),
 	"epoch": preload("res://data/audio/sfx/epoch.wav"),
+	"regress-time": preload("res://data/audio/sfx/regress-time.wav"),
 	"lose": preload("res://data/audio/sfx/lose.wav"),
 	"win": preload("res://data/audio/sfx/win.wav"),
 	"pause-menu": preload("res://data/audio/sfx/pause-menu.wav"),

@@ -72,7 +72,6 @@ var pieces := []
 
 var bgm_enabled := true
 
-
 func clear_registry():
 	world = null
 	player = null
@@ -89,7 +88,7 @@ func clear_registry():
 func progress_time(x_input: int, y_input: int):
 	time_progression_active = true
 	
-	var player_did_move: bool = player.move(x_input, y_input)
+	var player_did_move: bool = player.progress_time(x_input, y_input)
 
 	if player_did_move:
 		AudioManager.play("epoch")
@@ -104,7 +103,7 @@ func progress_time(x_input: int, y_input: int):
 		for piece in pieces:
 			if piece != player:
 				var lose_was_queued: bool = false
-				var piece_did_move: bool = piece.progress_time()
+				var piece_did_move: bool = piece.progress_time(null, null)
 
 				if lose_queued and not lose_was_queued:
 					# Force the piece to animate if it caused a loss.
@@ -130,8 +129,26 @@ func progress_time(x_input: int, y_input: int):
 
 	time_progression_active = false
 
-func increment_epoch():
-	var new_epoch: int = epoch + 1
+func regress_time():
+	time_progression_active = true
+
+	if epoch > INITIAL_EPOCH:
+		for piece in pieces:
+			piece.regress_time()
+		increment_epoch(-1)
+
+		AudioManager.play("regress-time")
+	else:
+		AudioManager.play("cant-move")
+		yield(get_tree().create_timer(0.5), "timeout")
+
+	if player.is_currently_animating:
+		yield(player, "completed_movement_animation")
+
+	time_progression_active = false
+
+func increment_epoch(increment_direction: int=1):
+	var new_epoch: int = epoch + increment_direction
 		
 	set_epoch(new_epoch)
 
@@ -163,6 +180,8 @@ func change_level(new_level_i: int):
 	get_tree().change_scene_to(levels[level_index])
 	_save_game()
 	change_level_queued = false
+	
+	print("NEW LEVEL: " + str(level_index))
 
 func toggle_bgm_enabled():
 	bgm_enabled = !bgm_enabled

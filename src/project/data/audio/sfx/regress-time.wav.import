@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/regress-time.wav-97cae76332dca113312c01d42f3d9dfd.sample"
+
+[deps]
+
+source_file="res://data/audio/sfx/regress-time.wav"
+dest_files=[ "res://.import/regress-time.wav-97cae76332dca113312c01d42f3d9dfd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

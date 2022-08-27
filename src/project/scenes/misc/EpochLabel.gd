@@ -30,4 +30,3 @@ func _on_time_progressed(new_epoch: int, last_epoch: int):
 		current_color = Globals.COLOR_YELLOW.to_html()
 
 	bbcode_text = _epoch_to_label(abs(new_epoch))
-	print(new_epoch)

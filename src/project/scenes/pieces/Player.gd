@@ -9,6 +9,19 @@ func _init():
 func _ready():
 	if not Globals.player:
 		Globals.player = self
+	
+	if Globals.player == self:
+		Globals.connect("time_progressed", self, "_on_time_progressed")
+
+func regress_time() -> bool:
+	var could_move: bool = .regress_time()
+
+	set_flip_h(-last_move[0] > 0)
+	
+	if Globals.player != self and recorded_movements.empty():
+		destroy()
+	
+	return could_move
 
 func move(x_delta: int, y_delta: int, colliding_piece=null, force: bool=false) -> bool:
 	if x_delta:
@@ -48,3 +61,8 @@ func clone(x: int, y: int):
 
 func animate_movement(new_global_x: float, new_global_y: float):
 	return bounce_to_position_animation(new_global_x, new_global_y, ANIMATION_DURATION)
+
+func _on_time_progressed(new_epoch: int, last_epoch: int):
+	if new_epoch == 0:
+		clone(start_pos[0], start_pos[1])
+		AudioManager.play("clone")

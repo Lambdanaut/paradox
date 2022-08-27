@@ -14,9 +14,13 @@ var was_collided_with_this_turn := false
 func _init():
 	piece_id = Globals.BUTTON_RED_PIECE_ID
 
-func progress_time() -> bool:
+func progress_time(x_delta=null, y_delta=null) -> bool:
 	was_collided_with_this_turn = false
-	return .progress_time()
+	return .progress_time(x_delta, y_delta)
+
+func regress_time():
+	was_collided_with_this_turn = false
+	return .regress_time()
 
 func toggle_engaged(new_engaged: bool):
 	if new_engaged and not engaged:

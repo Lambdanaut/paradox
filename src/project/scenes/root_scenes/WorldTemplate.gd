@@ -59,8 +59,6 @@ func _init():
 func _ready():
 	bounds = _calculate_world_bounds(map)
 	_initialize_map(map)
-	
-	Globals.connect("time_progressed", self, "_on_time_progressed")
 
 	if bgm_enabled and Globals.bgm_enabled:
 		Globals.play_bgm()
@@ -168,7 +166,7 @@ func _instantiate_obj_at(obj: Resource, x: int, y: int):
 	var instance = obj.instance()
 	instance.set_piece_pos(x, y, false)
 	add_child(instance)
-	
+
 	return instance
 
 func _instantiate_tile_at(x: int, y: int):
@@ -182,13 +180,6 @@ func _place_wall_at(x: int, y: int):
 
 func _calculate_world_bounds(_map: Array) -> Array:
 	return [len(_map[0]) - 1, len(_map) - 1]
-
-func _on_time_progressed(new_epoch: int, last_epoch: int):
-	if new_epoch == 0 and last_epoch < 0:
-		Globals.player.clone(
-			Globals.player.start_pos[0],
-			Globals.player.start_pos[1])
-		AudioManager.play("clone")
 
 func has_wall_at(x: int, y: int):
 	return $TileMap.get_cell(x, y) != TileMap.INVALID_CELL

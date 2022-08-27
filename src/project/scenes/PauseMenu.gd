@@ -129,7 +129,6 @@ func _unhandled_input(event):
 		if event.pressed:
 			if _is_active:
 				_swipe_start_pos = event.position
-
 			else:
 				var our_screen_touch_timer = get_tree().create_timer(SCREEN_TOUCH_TO_PAUSE_DURATION)
 				_screen_touch_timer = our_screen_touch_timer

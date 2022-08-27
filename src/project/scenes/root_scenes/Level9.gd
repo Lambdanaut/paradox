@@ -5,7 +5,7 @@ func _init():
 	map = [
 		[w,w,w,w,w,w,w,w,w,P,w,w,w,w,w,w,w,w,w,w],
 		[w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w],
-		[w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w],
+		[w,o,o,o,o,o,o,o,o,B,o,o,o,o,o,o,o,o,o,w],
 		[w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w],
 		[w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w],
 		[w,o,o,o,o,o,o,o,o,C,o,o,o,o,o,o,o,o,o,w],
@@ -15,6 +15,7 @@ func _init():
 		[w,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,o,w],
 		[w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w,w],
 	]
+	bgm_enabled = false
 
 	terminal_dialogue = [
 		"Incoming System Transmission",
