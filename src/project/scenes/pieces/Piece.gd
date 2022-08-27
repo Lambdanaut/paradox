@@ -28,7 +28,7 @@ func _ready():
 		Globals.add_piece(self)
 
 func progress_time(x_delta=null, y_delta=null) -> bool:
-	var could_move: bool = false
+	var could_move: bool = true
 	var next_moves: Array = [[0,0]]
 	if playback_movements:
 		next_moves = playback_movements[0]
@@ -42,9 +42,10 @@ func progress_time(x_delta=null, y_delta=null) -> bool:
 		next_moves = [[x_delta, y_delta]]
 		could_move = move(x_delta, y_delta)
 
-	recorded_movements.append(next_moves)
-	for child in child_clones:
-		child.playback_movements.append(next_moves)
+	if could_move:
+		recorded_movements.append(next_moves)
+		for child in child_clones:
+			child.playback_movements.append(next_moves)
 
 	return could_move
 

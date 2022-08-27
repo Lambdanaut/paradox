@@ -109,11 +109,12 @@ func progress_time(x_input: int, y_input: int):
 					# Force the piece to animate if it caused a loss.
 					if not piece.is_currently_animating:
 						piece.move(piece.last_move[0], piece.last_move[1], null, true)
-					yield(piece, "completed_movement_animation")
+					if piece.is_currently_animating:
+						yield(piece, "completed_movement_animation")
 
 	else:
 		AudioManager.play("cant-move")
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(0.3), "timeout")
 
 		if lose_queued:
 			# Force the player animation if we're going to die there
@@ -143,10 +144,13 @@ func regress_time():
 		AudioManager.play("regress-time")
 	else:
 		AudioManager.play("cant-move")
-		yield(get_tree().create_timer(0.5), "timeout")
+		yield(get_tree().create_timer(0.3), "timeout")
 
 	if player.is_currently_animating:
 		yield(player, "completed_movement_animation")
+
+	if lose_queued:
+		return _lose()
 
 	time_progression_active = false
 
