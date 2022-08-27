@@ -62,10 +62,9 @@ func _ready():
 	
 	Globals.connect("time_direction_changed", self, "_on_time_direction_changed")
 
-	if bgm_enabled:
-		if not AudioManager.music_stream_player.playing:
-			AudioManager.play_bgm("planet-iii")
-	else:
+	if bgm_enabled and Globals.bgm_enabled:
+		Globals.play_bgm()
+	elif AudioManager.music_stream_player.playing:
 		AudioManager.stop_bgm()
 		
 	$TileMap.global_position.y += Y_OFFSET

@@ -5,7 +5,7 @@ signal time_direction_changed(new_direction)
 
 # DEBUG CONSTANTS
 const SHOW_SPLASH_SCREEN_WHEN_IN_DEBUG_MODE := false
-const LOAD_GAME_FILE_WHEN_IN_DEBUG_MODE := false
+const LOAD_GAME_FILE_WHEN_IN_DEBUG_MODE := true
 
 const AUTHOR: String = "Lambdanaut"
 const AUTHOR_URL: String = "https://lambdanaut.com"
@@ -71,6 +71,9 @@ var lost_last_scene := false
 var game_just_started := true
 var game_loaded := false
 var pieces := []
+
+var bgm_enabled := true
+
 
 func clear_registry():
 	world = null
@@ -171,6 +174,17 @@ func change_level(new_level_i: int):
 	get_tree().change_scene_to(levels[level_index])
 	_save_game()
 	change_level_queued = false
+
+func toggle_bgm_enabled():
+	bgm_enabled = !bgm_enabled
+	
+	if bgm_enabled and world.bgm_enabled:
+		play_bgm()
+	elif not bgm_enabled:
+		AudioManager.stop_bgm()
+
+func play_bgm():
+	AudioManager.play_bgm("planet-iii")
 
 func add_piece(piece):
 	pieces.append(piece)

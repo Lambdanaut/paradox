@@ -15,6 +15,9 @@ script = ExtResource( 2 )
 margin_left = 75.0
 margin_right = 275.0
 
+[node name="BgmEnabledHeader" parent="UI/PauseMenu" index="3"]
+text = "LEVELS UNLOCKED"
+
 [node name="Wormhole" type="Sprite" parent="." index="4"]
 material = SubResource( 1 )
 position = Vector2( 232, 39 )
