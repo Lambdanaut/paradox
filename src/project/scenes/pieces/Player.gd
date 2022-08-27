@@ -5,7 +5,6 @@ const ANIMATION_DURATION: float = 0.35
 
 func _init():
 	piece_id = Globals.PLAYER_PIECE_ID
-	process_order = 0
 
 func _ready():
 	if not Globals.player:

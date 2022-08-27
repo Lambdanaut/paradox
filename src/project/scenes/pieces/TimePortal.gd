@@ -4,7 +4,6 @@ var consumable := true
 
 func _init():
 	piece_id = Globals.TIME_PORTAL_PIECE_ID
-	process_order = -2
 
 func _ready():
 	pass

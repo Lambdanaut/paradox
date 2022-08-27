@@ -4,7 +4,6 @@ signal completed_movement_animation
 
 class_name Piece
 
-var process_order: int = 0  # Player process order is 0. The lower the process order, the earlier processed in a game
 var should_register_piece_on_ready: bool = true
 
 var pos: Array = [0, 0]
@@ -51,19 +50,22 @@ func progress_time(x_delta=null, y_delta=null) -> bool:
 	return could_move
 
 func regress_time() -> bool:
-	var could_move: bool = false
+	var could_move: bool = true
 	if playback_movements_popped:
 		playback_movements.insert(0, playback_movements_popped.pop_back())
 		playback_movements.remove(abs(Globals.INITIAL_EPOCH))
+	if piece_id == Globals.BOX_PIECE_ID:
+		print(Globals.epoch)
 	if recorded_movements:
 		# Loop through all the recorded movements made in the last turn(*usually* just a single movement per turn)
 		for recorded_move in recorded_movements.pop_back():
 			could_move = move(recorded_move[0] * -1, recorded_move[1] * -1, null, true) and could_move
-		
+
 	return could_move
 
 # function to be called when the turn ends after all pieces have moved.
 func end_epoch():
+
 	if recorded_movements:
 		for movement in involuntary_movements_this_epoch:
 			recorded_movements[-1].append(movement)

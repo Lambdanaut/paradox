@@ -9,7 +9,6 @@ var engaged := true
 
 func _init():
 	piece_id = Globals.GATE_RED_PIECE_ID
-	process_order = -7
 
 func toggle_engaged():
 	var button_count: int = 0

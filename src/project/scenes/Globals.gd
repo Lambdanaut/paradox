@@ -60,6 +60,7 @@ var world = null
 var player = null
 var epoch: int = INITIAL_EPOCH
 var time_progression_active := false
+var time_regression_active := false
 var engaged_red_button_count: int = 0
 var engaged_green_button_count: int = 0
 var win_queued := false
@@ -77,6 +78,7 @@ func clear_registry():
 	player = null
 	epoch = INITIAL_EPOCH
 	time_progression_active = false
+	time_regression_active = false
 	engaged_red_button_count = 0
 	engaged_green_button_count = 0
 	win_queued = false
@@ -135,6 +137,7 @@ func progress_time(x_input: int, y_input: int):
 
 func regress_time():
 	time_progression_active = true
+	time_regression_active = true
 
 	if epoch > INITIAL_EPOCH:
 		player.regress_time()
@@ -155,6 +158,7 @@ func regress_time():
 		lose_queued = false
 
 	time_progression_active = false
+	time_regression_active = false
 
 func increment_epoch(increment_direction: int=1):
 	var new_epoch: int = epoch + increment_direction
@@ -206,11 +210,6 @@ func play_bgm():
 func add_piece(piece):
 	pieces.append(piece)
 	
-	pieces.sort_custom(self, "_process_order_sort")
-
-func _process_order_sort(a, b) -> bool:
-	return a.process_order > b.process_order
-
 func remove_piece(piece):
 	pieces.erase(piece)
 
