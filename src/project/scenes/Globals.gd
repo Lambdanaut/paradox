@@ -125,6 +125,9 @@ func progress_time(x_input: int, y_input: int):
 		return _lose()
 
 	if player_did_move:
+		for piece in pieces:
+			piece.end_epoch()
+
 		increment_epoch()
 
 	time_progression_active = false

@@ -16,6 +16,7 @@ var last_move: Array = [0, 0]
 var recorded_movements: Array = []  # An array of [[ [0, 1], [-1,0] ], [[0, 1], [-1,0] ], ] because a piece can move more than once a turn(like a box)
 var playback_movements: Array = []
 var playback_movements_popped: Array = []
+var involuntary_movements_this_epoch: Array = []  # An array of [[ [0, 1], [-1,0] ], [[0, 1], [-1,0] ], ] of moves that have made without our volition this turn(like being pushed as a box)
 var child_clones: Array = []
 var clone_parent = null
 
@@ -28,7 +29,7 @@ func _ready():
 
 func progress_time(x_delta=null, y_delta=null) -> bool:
 	var could_move: bool = false
-	var next_moves: Array
+	var next_moves: Array = [[0,0]]
 	if playback_movements:
 		next_moves = playback_movements[0]
 		could_move = true
@@ -41,10 +42,9 @@ func progress_time(x_delta=null, y_delta=null) -> bool:
 		next_moves = [[x_delta, y_delta]]
 		could_move = move(x_delta, y_delta)
 
-	if could_move:
-		recorded_movements.append(next_moves)
-		for child in child_clones:
-			child.playback_movements.append(next_moves)
+	recorded_movements.append(next_moves)
+	for child in child_clones:
+		child.playback_movements.append(next_moves)
 
 	return could_move
 
@@ -59,6 +59,13 @@ func regress_time() -> bool:
 			could_move = move(recorded_move[0] * -1, recorded_move[1] * -1, null, true) and could_move
 		
 	return could_move
+
+# function to be called when the turn ends after all pieces have moved.
+func end_epoch():
+	if recorded_movements:
+		for movement in involuntary_movements_this_epoch:
+			recorded_movements[-1].append(movement)
+	involuntary_movements_this_epoch = []
 
 func move(x_delta: int, y_delta: int, colliding_piece=null, force: bool=false) -> bool:
 	last_move = [x_delta, y_delta]
