@@ -40,6 +40,7 @@ format = 1
 
 [node name="SplashScreen" type="Node2D" parent="."]
 visible = false
+z_index = 101
 
 [node name="BlackoutScreen" type="Polygon2D" parent="SplashScreen"]
 z_index = 100

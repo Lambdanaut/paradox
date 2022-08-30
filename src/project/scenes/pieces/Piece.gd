@@ -54,8 +54,6 @@ func regress_time() -> bool:
 	if playback_movements_popped:
 		playback_movements.insert(0, playback_movements_popped.pop_back())
 		playback_movements.remove(abs(Globals.INITIAL_EPOCH))
-	if piece_id == Globals.BOX_PIECE_ID:
-		print(Globals.epoch)
 	if recorded_movements:
 		# Loop through all the recorded movements made in the last turn(*usually* just a single movement per turn)
 		for recorded_move in recorded_movements.pop_back():

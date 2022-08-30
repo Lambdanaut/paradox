@@ -61,7 +61,8 @@ func _ready():
 	_initialize_map(map)
 
 	if bgm_enabled and Globals.bgm_enabled:
-		Globals.play_bgm()
+		if not AudioManager.music_stream_player.playing:
+			Globals.play_bgm()
 	elif AudioManager.music_stream_player.playing:
 		AudioManager.stop_bgm()
 		

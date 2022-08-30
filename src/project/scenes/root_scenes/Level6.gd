@@ -32,6 +32,5 @@ func _init():
 		"[color=#ff8ef9]...[/color]",
 		"[color=#ff8ef9]A proud papa, huh?[/color]",
 		"[color=#ff8ef9]Is that what you are Mr Fontaine?[/color]",
-		"[shake][color=#ff3333]ARE YOU PROUD OF ME?[/color][/shake]",
 		"End of transmission",
 	]

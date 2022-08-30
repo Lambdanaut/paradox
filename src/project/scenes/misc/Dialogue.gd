@@ -41,7 +41,7 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 		var in_bbcode_tag := false
 		
 		text_label.bbcode_text = _decorate_dialogue_string(current_dialogue_str)
-		text_label.visible_characters = len(DIALOGUE_PROMPT) - 1
+		text_label.visible_characters = len(DIALOGUE_PROMPT)
 		
 		while dialogue_str_i < len(current_dialogue_str):
 			next_dialogue_input_received = false
@@ -50,8 +50,6 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 
 			if next_char == "[":
 				in_bbcode_tag = true
-			elif next_char == "]":
-				in_bbcode_tag = false
 
 			if not in_bbcode_tag:
 				# Longer wait times for punctuation 
@@ -76,6 +74,9 @@ func run_dialogue(dialogue: Array, sfx: String="speech1", item_added_texture: Te
 					dialogue_str_i = len(current_dialogue_str)
 					yield(get_tree(), "idle_frame")
 					break
+
+			if next_char == "]":
+				in_bbcode_tag = false
 
 			dialogue_str_i += 1
 

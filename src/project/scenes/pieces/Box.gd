@@ -22,13 +22,11 @@ func on_collided_with(other_piece, move_x: int, move_y: int) -> bool:
 			if did_move:
 				involuntary_movements_this_epoch.append([move_x, move_y])
 
-#			print(involuntary_movements_this_epoch)
 			return did_move
 	
 	return false
 
 func move(x_delta: int, y_delta: int, colliding_piece=null, force: bool=false) -> bool:
-	#print(str(Globals.epoch) + " " + str(x_delta) + " " + str(y_delta))
 	return .move(x_delta, y_delta, colliding_piece, force)
 
 func animate_movement(new_global_x: float, new_global_y: float):
