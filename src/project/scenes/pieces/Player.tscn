@@ -10,6 +10,6 @@ script = ExtResource( 1 )
 light_mask = 3
 position = Vector2( 9, 1 )
 texture = ExtResource( 2 )
-hframes = 2
+hframes = 3
 
 [node name="Tween" type="Tween" parent="."]
